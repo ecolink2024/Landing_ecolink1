@@ -28,11 +28,11 @@ export default async function Home() {
           <img
             alt="Hero Background"
             className="absolute inset-0 w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl3-93XEqxHS69FIRLrE2vF-QXUuZv_u5UW3jL9-snEIifo4k_6f7Q0NUncgCzw7EhjdsQY2KIkltLlY_XPk4qB9aLKhYW4ZBL1q32OfV3k5goUeErPvY5EqwVNDvepcyDYL2-Z6Jcrowb4Qm4oKTb1X4QGirkI1RWG0SK9EC01Tiq8GLsVbJUInY8X1qyrG_GB-ksXf7BBvO6XBFOOT-ryHYFxx6Cz_1UfC-X5Gd7BSFuUqPGmM_jCccKNPMjODwB1AAb_Dx4bXfw"
+            src="/hero-home.png"
           />
           <div className="relative z-20 px-4 max-w-4xl">
-            <h2 className="text-lg font-bold tracking-widest mb-4">SOMOS ECOLINK</h2>
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <h2 className="text-2xl md:text-4xl font-bold tracking-widest mb-12 md:mb-16">SOMOS ECOLINK</h2>
+            <h1 className="text-xl md:text-3xl font-extrabold mb-6 leading-tight whitespace-nowrap">
               CONECTAMOS | RECUPERAMOS | TRANSFORMAMOS
             </h1>
             <p className="text-xl md:text-2xl font-light">
