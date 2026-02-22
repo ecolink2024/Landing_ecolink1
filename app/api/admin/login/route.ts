@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { createAdminSession } from '@/lib/auth';
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? 'admin@ecolink.com';
-const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH ?? '$2a$10$j0..UL0Rpk0lzinG3R4CMuUyI/KKwQmLtTLyHX5CroX9gXLSzcm/O';
+const ADMIN_EMAIL = 'admin@ecolink.com';
+const ADMIN_PASSWORD_HASH = '$2a$10$j0..UL0Rpk0lzinG3R4CMuUyI/KKwQmLtTLyHX5CroX9gXLSzcm/O';
 
 export async function POST(request: NextRequest) {
   const { email, password } = await request.json();
