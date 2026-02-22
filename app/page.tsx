@@ -24,6 +24,7 @@ export default async function Home() {
         <nav className="hidden md:flex bg-eco-green/80 backdrop-blur-sm rounded-full px-8 py-2 gap-6 text-white text-sm font-medium">
           <a className="hover:underline" href="#">INICIO</a>
           <a className="hover:underline" href="#">NOSOTROS</a>
+          <a className="hover:underline" href="/empresas">EMPRESAS</a>
           <a className="hover:underline" href="#">SERVICIOS</a>
           <a className="hover:underline" href="#">RECURSOS</a>
           <a className="hover:underline" href="#">NOVEDADES</a>
