@@ -22,8 +22,8 @@ export default async function Home() {
       <Navbar />
 
       <main>
-        {/* Hero */}
-        <section className="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+        {/* Hero - se extiende detrás del navbar para fondo transparente */}
+        <section className="relative min-h-screen flex items-center justify-center text-center text-white overflow-hidden -mt-[73px] pt-[73px]">
           <div className="absolute inset-0 bg-black/40 z-10"></div>
           <img
             alt="Hero Background"
