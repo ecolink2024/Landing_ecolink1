@@ -9,7 +9,6 @@ const links = [
   { label: 'CASAS', href: '/casas' },
   { label: 'EMPRESAS', href: '/empresas' },
   { label: 'NOVEDADES', href: '/novedades' },
-  { label: 'CONTACTO', href: '/#contacto' },
 ];
 
 export default function Navbar() {
