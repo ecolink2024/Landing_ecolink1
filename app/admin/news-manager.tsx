@@ -88,6 +88,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   function onEdit(item: News) {
     setEditingId(item.id);
     setForm({ title: item.title, content: item.content, imageUrl: item.imageUrl, isPublished: item.isPublished });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   async function onDelete(id: string) {
@@ -109,75 +110,168 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   }
 
   return (
-    <div className="admin-grid">
-      <section>
-        <h2>{editingId ? 'Editar noticia' : 'Nueva noticia'}</h2>
-        <form onSubmit={onSubmit}>
-          <label>
-            Título
-            <input value={form.title} onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))} required />
-          </label>
-          <label>
-            Contenido
-            <textarea rows={6} value={form.content} onChange={(e) => setForm((p) => ({ ...p, content: e.target.value }))} required />
-          </label>
-          <label>
-            Imagen (archivo)
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) onUpload(file);
-              }}
-            />
-          </label>
-          <label>
-            URL imagen
-            <input value={form.imageUrl} onChange={(e) => setForm((p) => ({ ...p, imageUrl: e.target.value }))} required />
-          </label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <input
-              style={{ width: 'auto' }}
-              type="checkbox"
-              checked={form.isPublished}
-              onChange={(e) => setForm((p) => ({ ...p, isPublished: e.target.checked }))}
-            />
-            Publicada
-          </label>
-          {error ? <p style={{ color: '#be123c' }}>{error}</p> : null}
-          <div style={{ display: 'flex', gap: 8 }}>
-            <button className="btn-primary" type="submit" disabled={loading || uploading}>
-              {loading ? 'Guardando...' : editingId ? 'Actualizar' : 'Crear'}
-            </button>
-            <button type="button" className="btn-muted" onClick={() => { setForm(initialForm); setEditingId(null); }}>
-              Limpiar
-            </button>
-            <button type="button" className="btn-danger" onClick={onLogout}>
-              Salir
-            </button>
-          </div>
-        </form>
-      </section>
+    <div className="min-h-screen bg-eco-beige">
+      {/* Header */}
+      <header className="bg-eco-forest px-6 py-4 flex items-center justify-between shadow-md">
+        <div className="text-eco-beige text-2xl font-black tracking-tighter">EcoLINK</div>
+        <p className="text-eco-light-green text-xs uppercase tracking-widest font-bold hidden md:block">Panel de noticias</p>
+        <button
+          onClick={onLogout}
+          className="bg-eco-pink text-white px-5 py-2 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-eco-pink/80 transition-colors"
+        >
+          Salir
+        </button>
+      </header>
 
-      <section>
-        <h2>Listado</h2>
-        <div style={{ display: 'grid', gap: 12 }}>
-          {orderedItems.map((item) => (
-            <article key={item.id} className="card">
-              <img src={item.imageUrl} alt={item.title} />
-              <div className="card-body">
-                <h3 className="title">{item.title}</h3>
-                <p className="meta">{new Date(item.createdAt).toLocaleDateString('es-AR')} · {item.isPublished ? 'Publicada' : 'Borrador'}</p>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  <button className="btn-muted" onClick={() => onEdit(item)}>Editar</button>
-                  <button className="btn-danger" onClick={() => onDelete(item.id)}>Eliminar</button>
-                </div>
+      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        {/* Form */}
+        <section>
+          <h2 className="text-eco-forest text-2xl font-extrabold mb-6">
+            {editingId ? 'Editar noticia' : 'Nueva noticia'}
+          </h2>
+
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+            <form onSubmit={onSubmit} className="space-y-5">
+              <div>
+                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Título</label>
+                <input
+                  value={form.title}
+                  onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
+                  required
+                  placeholder="Título de la noticia"
+                  className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors"
+                />
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Contenido</label>
+                <textarea
+                  rows={6}
+                  value={form.content}
+                  onChange={(e) => setForm((p) => ({ ...p, content: e.target.value }))}
+                  required
+                  placeholder="Escribí el contenido de la noticia..."
+                  className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors resize-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Imagen (archivo)</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) onUpload(file);
+                  }}
+                  className="w-full text-sm text-eco-forest file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-eco-green file:text-white hover:file:bg-eco-forest file:cursor-pointer file:transition-colors"
+                />
+                {uploading && <p className="text-xs text-eco-green mt-1 font-medium">Subiendo imagen...</p>}
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">URL imagen</label>
+                <input
+                  value={form.imageUrl}
+                  onChange={(e) => setForm((p) => ({ ...p, imageUrl: e.target.value }))}
+                  required
+                  placeholder="https://..."
+                  className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors"
+                />
+              </div>
+
+              {/* Preview miniatura */}
+              {form.imageUrl && (
+                <div className="rounded-lg overflow-hidden h-40 bg-gray-100">
+                  <img src={form.imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                </div>
+              )}
+
+              <label className="flex items-center gap-3 cursor-pointer select-none">
+                <div
+                  onClick={() => setForm((p) => ({ ...p, isPublished: !p.isPublished }))}
+                  className={`w-11 h-6 rounded-full transition-colors relative ${form.isPublished ? 'bg-eco-green' : 'bg-gray-300'}`}
+                >
+                  <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-transform ${form.isPublished ? 'translate-x-6' : 'translate-x-1'}`} />
+                </div>
+                <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">
+                  {form.isPublished ? 'Publicada' : 'Borrador'}
+                </span>
+              </label>
+
+              {error && <p className="text-sm text-eco-pink font-medium">{error}</p>}
+
+              <div className="flex gap-3 pt-1">
+                <button
+                  type="submit"
+                  disabled={loading || uploading}
+                  className="flex-1 bg-eco-green text-white font-bold py-3 rounded-full uppercase tracking-wider text-sm hover:bg-eco-forest transition-colors disabled:opacity-50"
+                >
+                  {loading ? 'Guardando...' : editingId ? 'Actualizar' : 'Publicar'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setForm(initialForm); setEditingId(null); }}
+                  className="px-6 bg-gray-100 text-eco-forest font-bold py-3 rounded-full uppercase tracking-wider text-sm hover:bg-gray-200 transition-colors"
+                >
+                  Limpiar
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        {/* Listado */}
+        <section>
+          <h2 className="text-eco-forest text-2xl font-extrabold mb-6">
+            Noticias <span className="text-eco-green">({orderedItems.length})</span>
+          </h2>
+
+          {orderedItems.length === 0 && (
+            <div className="bg-white rounded-xl border border-gray-100 p-12 text-center">
+              <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">No hay noticias aún</p>
+            </div>
+          )}
+
+          <div className="space-y-4">
+            {orderedItems.map((item) => (
+              <article key={item.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex gap-0">
+                <img
+                  src={item.imageUrl}
+                  alt={item.title}
+                  className="w-28 h-28 object-cover flex-shrink-0"
+                />
+                <div className="p-4 flex-grow flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-eco-forest font-bold text-sm leading-snug mb-1 line-clamp-2">{item.title}</h3>
+                    <p className="text-gray-400 text-xs">
+                      {new Date(item.createdAt).toLocaleDateString('es-AR')}
+                      {' · '}
+                      <span className={item.isPublished ? 'text-eco-green font-semibold' : 'text-eco-pink font-semibold'}>
+                        {item.isPublished ? 'Publicada' : 'Borrador'}
+                      </span>
+                    </p>
+                  </div>
+                  <div className="flex gap-2 mt-2">
+                    <button
+                      onClick={() => onEdit(item)}
+                      className="px-4 py-1.5 bg-eco-forest text-white text-xs font-bold rounded-full uppercase tracking-wider hover:bg-eco-green transition-colors"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => onDelete(item.id)}
+                      className="px-4 py-1.5 bg-eco-beige text-eco-pink text-xs font-bold rounded-full uppercase tracking-wider border border-eco-pink/30 hover:bg-eco-pink hover:text-white transition-colors"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

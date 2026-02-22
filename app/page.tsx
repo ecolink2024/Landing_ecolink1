@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma';
+import Navbar from '@/app/components/Navbar';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,35 +19,20 @@ export default async function Home() {
 
   return (
     <body className="bg-eco-beige text-eco-text-dark">
-      {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-transparent px-6 py-4 flex items-center justify-between">
-        <div className="text-white text-2xl font-bold tracking-tighter">EcoLINK</div>
-        <nav className="hidden md:flex bg-eco-green/80 backdrop-blur-sm rounded-full px-8 py-2 gap-6 text-white text-sm font-medium">
-          <a className="hover:underline" href="#">INICIO</a>
-          <a className="hover:underline" href="#">NOSOTROS</a>
-          <a className="hover:underline" href="/empresas">EMPRESAS</a>
-          <a className="hover:underline" href="#">SERVICIOS</a>
-          <a className="hover:underline" href="#">RECURSOS</a>
-          <a className="hover:underline" href="#">NOVEDADES</a>
-          <a className="hover:underline" href="#">CONTACTO</a>
-        </nav>
-        <button className="bg-eco-pink text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform">
-          INGRESAR
-        </button>
-      </header>
+      <Navbar />
 
       <main>
-        {/* Hero */}
-        <section className="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+        {/* Hero - se extiende detrás del navbar para fondo transparente */}
+        <section className="relative min-h-screen flex items-center justify-center text-center text-white overflow-hidden -mt-[73px] pt-[73px]">
           <div className="absolute inset-0 bg-black/40 z-10"></div>
           <img
             alt="Hero Background"
             className="absolute inset-0 w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl3-93XEqxHS69FIRLrE2vF-QXUuZv_u5UW3jL9-snEIifo4k_6f7Q0NUncgCzw7EhjdsQY2KIkltLlY_XPk4qB9aLKhYW4ZBL1q32OfV3k5goUeErPvY5EqwVNDvepcyDYL2-Z6Jcrowb4Qm4oKTb1X4QGirkI1RWG0SK9EC01Tiq8GLsVbJUInY8X1qyrG_GB-ksXf7BBvO6XBFOOT-ryHYFxx6Cz_1UfC-X5Gd7BSFuUqPGmM_jCccKNPMjODwB1AAb_Dx4bXfw"
+            src="/hero-home.png"
           />
           <div className="relative z-20 px-4 max-w-4xl">
-            <h2 className="text-lg font-bold tracking-widest mb-4">SOMOS ECOLINK</h2>
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <h2 className="text-2xl md:text-4xl font-bold tracking-widest mb-12 md:mb-16">SOMOS ECOLINK</h2>
+            <h1 className="text-xl md:text-3xl font-extrabold mb-6 leading-tight whitespace-nowrap">
               CONECTAMOS | RECUPERAMOS | TRANSFORMAMOS
             </h1>
             <p className="text-xl md:text-2xl font-light">
@@ -83,32 +69,17 @@ export default async function Home() {
             <p className="text-eco-forest mb-16 max-w-2xl mx-auto leading-relaxed">
               Desde la separación en origen, hasta las cooperativas de reciclaje, acompañamos a Empresas, Hogares y Organizaciones en una Gestión Consciente de sus residuos.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-              <div className="flex flex-col items-center">
-                <div className="w-32 h-32 mb-6 flex items-center justify-center">
-                  <img alt="Icon Separation" className="object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZhlDI0Jeyoumx8KeRefpFB02edYXN7IGJtCCl-2PPDxwTiWSbJpUobOR0xTgGHsNeWfbfzpD1GpTfZONA_ujoolQvhyMk0PwxZPzZvXEd7xtaWG8c1z_wvAsGNJX7jclM6YVQ54Ksr6jrOAhSw9WoTsB0XBfjA_-0Eibz0R0GOogaVjEzQDLMMigIGdERjMwOkTf8MafXzBnRTu1f8dOZ4hfzVEbnapagpmzqi782W55jbXilN_1S2C8nsLvOHkieKvi9rId-6" />
-                </div>
-                <h3 className="text-eco-green font-bold text-sm uppercase tracking-tighter">Separación<br />en origen</h3>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-32 h-32 mb-6 flex items-center justify-center">
-                  <img alt="Icon Transport" className="object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrsIBAeo3iuP37YjqrCssqIBToUfeR9BsgY2GJ8uDXRODdQq-R28vp53KK6oc-kVZU2CFrulgb8UP1U-3JU88CGfMlb1L4xIhKMa7WjSjfQxPvr1gap4TgF-SvTx4dtdTsM-Sym2Da4M_kobfTCmJNi5yOHlDb2afEhYZxS8UODwMxUoF3fBNqU7hMh69R4dyoCtquofAJXTlpgNSFA9_D2PznPFtuY9tRM0-01hdTuGmV0npULj9zO9x3vfL3LbsFJY_ok9QXpnoq" />
-                </div>
-                <h3 className="text-eco-green font-bold text-sm uppercase tracking-tighter">Transporte de<br />materiales</h3>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-32 h-32 mb-6 flex items-center justify-center">
-                  <img alt="Icon Plant" className="object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiCzWK_9eb4B62aQqpE0mbg8BF4g0qOUdQi8_u4Jy4pBzs6j9PUa2TzlFqBNw6AmB3VtbQ5zkkB-7qONt77MObitozp1M8_XQezpWu5r__bfj7LcN7-giYU8amoW83dWm8vNZCBooTp3qSpeTSRbnXRZBf9wJT83DMoZXuyezD0zg2K6PK9eUc507fKERGFhFuxUmL9s6bOYGAlYNFOuOhggbsj_Zjy3wAxTonqombuu2HtnWqBOe22maIMP63sX6DENInWtlTcM2" />
-                </div>
-                <h3 className="text-eco-green font-bold text-sm uppercase tracking-tighter">Cooperativas y<br />Plantas de Gestión</h3>
-              </div>
-            </div>
+            <img
+              alt="Proceso EcoLINK: Separación en origen, Trasladamos los materiales, Cooperativas de reciclaje"
+              className="w-full max-w-3xl mx-auto object-contain rounded-lg shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+              src="/proceso-ecolink.svg"
+            />
           </div>
         </section>
 
         {/* Banner Mid */}
         <section className="relative h-80 flex items-center px-6 md:px-20 overflow-hidden">
-          <img alt="Waste Background" className="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdN3WFeXgteAoonNjsFC5FwpEyCi6ZywRfENlVeItxsr4_OZHkMsSMPmu9kcYxLRiYo4pLih8UJjZiA8yZn4ZlndNLle21xVFL8VDnlZmqLGZ3ddD_CNfC2bG_BbCQ5XLYDOH0fiUmp0w8symjXAV-YXHapZWXtULlFSLdHwIu-2Bfrkp6SgXS2qEmhmnTxFAkghdQucWL82jneIyQDNShvB6DThfahvuVImN9aRsP_5odWvwVq6C4uR5HXoVkt2qbdao8cshNPPDq" />
+          <img alt="Compostaje y residuos orgánicos" className="absolute inset-0 w-full h-full object-cover" src="/banner-organicos.png" />
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between gap-8 max-w-7xl mx-auto">
             <h2 className="text-white text-3xl md:text-5xl font-bold max-w-lg leading-tight">
@@ -116,7 +87,7 @@ export default async function Home() {
             </h2>
             <div className="bg-eco-beige/90 backdrop-blur p-8 rounded shadow-xl text-center min-w-[300px]">
               <div className="text-eco-green text-4xl font-extrabold">+50 mil litros</div>
-              <div className="text-eco-forest text-xs uppercase tracking-widest font-bold mt-2">de aceite recuperado</div>
+              <div className="text-eco-forest text-xs uppercase tracking-widest font-bold mt-2">orgánicos recuperados</div>
             </div>
           </div>
         </section>

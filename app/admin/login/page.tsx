@@ -38,23 +38,61 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="admin-wrap">
-      <div className="container" style={{ maxWidth: 480 }}>
-        <h1>Ingreso administrador</h1>
-        <form onSubmit={onSubmit}>
-          <label>
-            Email
-            <input name="email" type="email" required />
-          </label>
-          <label>
-            Contraseña
-            <input name="password" type="password" required />
-          </label>
-          {error ? <p style={{ color: '#be123c' }}>{error}</p> : null}
-          <button className="btn-primary" disabled={loading} type="submit">
-            {loading ? 'Ingresando...' : 'Ingresar'}
-          </button>
-        </form>
+    <main className="min-h-screen bg-eco-forest flex items-center justify-center px-4">
+      {/* Background texture overlay */}
+      <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+
+      <div className="relative z-10 w-full max-w-md">
+        {/* Brand */}
+        <div className="text-center mb-8">
+          <div className="text-eco-beige text-4xl font-black tracking-tighter mb-1">EcoLINK</div>
+          <p className="text-eco-light-green text-xs uppercase tracking-widest font-bold">Panel de administración</p>
+        </div>
+
+        {/* Card */}
+        <div className="bg-eco-beige rounded-xl shadow-2xl p-8">
+          <h1 className="text-eco-forest text-2xl font-extrabold mb-6 text-center">Ingresar</h1>
+
+          <form onSubmit={onSubmit} className="space-y-4">
+            <div>
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                Email
+              </label>
+              <input
+                name="email"
+                type="email"
+                required
+                placeholder="admin@ecolink.com"
+                className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors bg-white"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                Contraseña
+              </label>
+              <input
+                name="password"
+                type="password"
+                required
+                placeholder="••••••••"
+                className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors bg-white"
+              />
+            </div>
+
+            {error && (
+              <p className="text-sm text-eco-pink font-medium">{error}</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-eco-green text-white font-bold py-3 rounded-full uppercase tracking-widest text-sm hover:bg-eco-forest transition-colors disabled:opacity-50 mt-2"
+            >
+              {loading ? 'Ingresando...' : 'Ingresar'}
+            </button>
+          </form>
+        </div>
       </div>
     </main>
   );
