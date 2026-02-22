@@ -44,7 +44,7 @@ export default function Navbar() {
         href="/#contacto"
         className="bg-eco-pink text-white px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wider shadow hover:scale-105 transition-transform"
       >
-        CONTACTO
+        ESCRIBINOS
       </Link>
     </header>
   );
