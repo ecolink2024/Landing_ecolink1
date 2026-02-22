@@ -23,9 +23,9 @@ export default async function Home() {
         <div className="text-white text-2xl font-bold tracking-tighter">EcoLINK</div>
         <nav className="hidden md:flex bg-eco-green/80 backdrop-blur-sm rounded-full px-8 py-2 gap-6 text-white text-sm font-medium">
           <a className="hover:underline" href="#">INICIO</a>
-          <a className="hover:underline" href="#nosotros">NOSOTROS</a>
-          <a className="hover:underline" href="#servicios">SERVICIOS</a>
-          <a className="hover:underline" href="#recursos">RECURSOS</a>
+          <a className="hover:underline" href="/somos">SOMOS</a>
+          <a className="hover:underline" href="/casas">CASAS</a>
+          <a className="hover:underline" href="/empresas">EMPRESAS</a>
           <a className="hover:underline font-bold" href="/novedades">NOVEDADES</a>
           <a className="hover:underline" href="#contacto">CONTACTO</a>
         </nav>
