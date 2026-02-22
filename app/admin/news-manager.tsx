@@ -8,7 +8,7 @@ type News = {
   content: string;
   imageUrl: string;
   isPublished: boolean;
-  createdAt: string;
+  createdAt: string | Date;
 };
 
 type FormState = {
