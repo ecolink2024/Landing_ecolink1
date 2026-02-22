@@ -1,3 +1,5 @@
+import Navbar from '@/app/components/Navbar';
+
 const HERO_IMAGE =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuDCnGg7u0LHfpsr5wKpfvJtOgTgiRv7eVOfIwCEVLAdFhphi0TenzHWRIZyQShkkHB9cNXuPx3Qx4I7UicwOOhMtp7bm_6QyRkD1CS0D2Xw8KAwCMNr5LTaLMFKdXkdPiJgRDH3Pz3zEotoZxXpkT8PV38e4SQVdF5fWiBWJKVDGY3psZGLAifhO5KuIWLqGKlEm4IHtZmCjyVPAdhjnzHw6OA-qqHFpiDJ5QEtN6QtLyOJveegq0CCypjRIE8H6O7zeOqIa23QjOue';
 
@@ -22,22 +24,7 @@ const services = [
 export default function CasasPage() {
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-eco-beige">
-      {/* Header */}
-      <header className="sticky top-0 z-50 flex items-center justify-between bg-white/80 px-4 py-3 backdrop-blur-md border-b border-slate-200">
-        <div className="flex items-center gap-2">
-          <span className="material-symbols-outlined text-3xl" style={{ color: '#ec5b13' }}>eco</span>
-          <h1 className="text-xl font-extrabold tracking-tight text-eco-forest">EcoLINK</h1>
-        </div>
-        <nav className="hidden md:flex gap-6 text-xs font-semibold uppercase tracking-widest text-eco-forest">
-          <a className="hover:underline" href="/">Inicio</a>
-          <a className="hover:underline font-bold underline" href="/casas">Casas</a>
-          <a className="hover:underline" href="/empresas">Empresas</a>
-          <a className="hover:underline" href="/somos">Somos EcoLINK</a>
-        </nav>
-        <button className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100">
-          <span className="material-symbols-outlined text-slate-600">person</span>
-        </button>
-      </header>
+      <Navbar />
 
       {/* Hero */}
       <section className="relative h-[60vh] w-full overflow-hidden">

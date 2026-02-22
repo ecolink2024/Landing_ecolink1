@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
+import Navbar from '@/app/components/Navbar';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,23 +30,9 @@ export default async function NovedadesPage({
 
   return (
     <body className="bg-eco-beige text-eco-text-dark">
-      {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-transparent px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-eco-forest text-2xl font-bold tracking-tighter">EcoLINK</Link>
-        <nav className="hidden md:flex bg-eco-green/80 backdrop-blur-sm rounded-full px-8 py-2 gap-6 text-white text-sm font-medium">
-          <Link className="hover:underline" href="/">INICIO</Link>
-          <a className="hover:underline" href="/#nosotros">NOSOTROS</a>
-          <a className="hover:underline" href="/#servicios">SERVICIOS</a>
-          <a className="hover:underline" href="/#recursos">RECURSOS</a>
-          <Link className="underline font-bold" href="/novedades">NOVEDADES</Link>
-          <a className="hover:underline" href="/#contacto">CONTACTO</a>
-        </nav>
-        <Link href="/" className="bg-eco-pink text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform">
-          INICIO
-        </Link>
-      </header>
+      <Navbar />
 
-      <main className="pt-28 pb-24 px-6">
+      <main className="pt-10 pb-24 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Título */}
           <div className="mb-12">

@@ -1,3 +1,5 @@
+import Navbar from '@/app/components/Navbar';
+
 export default function EmpresasPage() {
   const partnerLogos = [
     'AB6AXuB0dwAbTy_M2I2w7OyG7h_M9-IPioCV27qsvx5gCbUrZglQTMhHDPvlR6d1zqOv1ytjJwEVBZva2QdQT24SbXnaZzvQMdTaxQl3XjT6TRepm2jyIavfrpb4pMbwneI6LB-uTpGzlsZysF1wjylIWM13aJTTRpstHgQ6WejD3PHhJWxbvtDhoejfXRgwnS7Iub4nhLVLF4A7u1gadLpEtsOkZmyZ1JQHB_hVf5KexgywDtVAOZCo3dZPjaos38xfn9ux5yC3Mir0InHy',
@@ -20,28 +22,7 @@ export default function EmpresasPage() {
 
   return (
     <body className="bg-white text-gray-800 antialiased">
-      {/* Navigation */}
-      <nav className="bg-eco-green text-white py-4 px-6 flex justify-between items-center sticky top-0 z-50 shadow-md">
-        <div className="flex items-center gap-2">
-          <span className="font-bold text-xl tracking-tight">EcoLINK</span>
-          <div className="flex gap-1">
-            <span className="text-xs">♻️</span>
-            <span className="text-xs">💡</span>
-            <span className="text-xs">🍃</span>
-          </div>
-        </div>
-        <div className="hidden md:flex gap-6 text-xs font-semibold uppercase tracking-widest">
-          <a className="hover:underline" href="/empresas">Empresas</a>
-          <a className="hover:underline" href="#">Casas</a>
-          <a className="hover:underline" href="#">Somos EcoLINK</a>
-        </div>
-        <a
-          className="bg-eco-pink text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity"
-          href="#contact"
-        >
-          Escribinos
-        </a>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="relative h-[500px] flex items-end overflow-hidden">

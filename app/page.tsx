@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma';
+import Navbar from '@/app/components/Navbar';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,21 +19,7 @@ export default async function Home() {
 
   return (
     <body className="bg-eco-beige text-eco-text-dark">
-      {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-transparent px-6 py-4 flex items-center justify-between">
-        <div className="text-white text-2xl font-bold tracking-tighter">EcoLINK</div>
-        <nav className="hidden md:flex bg-eco-green/80 backdrop-blur-sm rounded-full px-8 py-2 gap-6 text-white text-sm font-medium">
-          <a className="hover:underline" href="#">INICIO</a>
-          <a className="hover:underline" href="/somos">SOMOS</a>
-          <a className="hover:underline" href="/casas">CASAS</a>
-          <a className="hover:underline" href="/empresas">EMPRESAS</a>
-          <a className="hover:underline font-bold" href="/novedades">NOVEDADES</a>
-          <a className="hover:underline" href="#contacto">CONTACTO</a>
-        </nav>
-        <button className="bg-eco-pink text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform">
-          INGRESAR
-        </button>
-      </header>
+      <Navbar />
 
       <main>
         {/* Hero */}
