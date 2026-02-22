@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isAdminAuthenticated } from '@/lib/auth';
-import { cloudinary } from '@/lib/cloudinary';
+import { supabase } from '@/lib/supabase';
+
+const BUCKET = 'news-images';
 
 export async function POST(request: NextRequest) {
   const isAdmin = await isAdminAuthenticated();
@@ -16,12 +18,19 @@ export async function POST(request: NextRequest) {
   }
 
   const bytes = await file.arrayBuffer();
-  const base64 = Buffer.from(bytes).toString('base64');
-  const dataUri = `data:${file.type};base64,${base64}`;
+  const buffer = Buffer.from(bytes);
+  const ext = file.name.split('.').pop();
+  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
 
-  const result = await cloudinary.uploader.upload(dataUri, {
-    folder: 'ecolink/news'
-  });
+  const { error } = await supabase.storage
+    .from(BUCKET)
+    .upload(fileName, buffer, { contentType: file.type, upsert: false });
 
-  return NextResponse.json({ secureUrl: result.secure_url });
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  const { data } = supabase.storage.from(BUCKET).getPublicUrl(fileName);
+
+  return NextResponse.json({ secureUrl: data.publicUrl });
 }
