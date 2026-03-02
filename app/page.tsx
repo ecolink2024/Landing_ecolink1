@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { supabase } from '@/lib/supabase';
 import Navbar from '@/app/components/Navbar';
 
 export const dynamic = 'force-dynamic';
@@ -6,12 +6,18 @@ export const dynamic = 'force-dynamic';
 const PAGE_SIZE = 3;
 
 async function getNews() {
-  const items = await prisma.news.findMany({
-    where: { isPublished: true },
-    orderBy: { createdAt: 'desc' },
-    take: PAGE_SIZE,
-  });
-  return items;
+  try {
+    const { data, error } = await supabase
+      .from('News')
+      .select('*')
+      .eq('isPublished', true)
+      .order('createdAt', { ascending: false })
+      .limit(PAGE_SIZE);
+    if (error) throw error;
+    return data ?? [];
+  } catch {
+    return [];
+  }
 }
 
 export default async function Home() {

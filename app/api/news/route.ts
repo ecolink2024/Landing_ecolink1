@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isAdminAuthenticated } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { supabase } from '@/lib/supabase';
 import { newsSchema } from '@/lib/news-schema';
 
 const DEFAULT_PAGE_SIZE = 5;
@@ -12,20 +12,25 @@ export async function GET(request: NextRequest) {
 
   const isAdmin = await isAdminAuthenticated();
   const includeDrafts = searchParams.get('includeDrafts') === '1' && isAdmin;
-  const where = includeDrafts ? {} : { isPublished: true };
 
-  const [items, total] = await Promise.all([
-    prisma.news.findMany({
-      where,
-      orderBy: { createdAt: 'desc' },
-      skip: (page - 1) * pageSize,
-      take: pageSize
-    }),
-    prisma.news.count({ where })
-  ]);
+  const from = (page - 1) * pageSize;
+  const to = from + pageSize - 1;
 
+  let query = supabase.from('News').select('*', { count: 'exact' });
+  if (!includeDrafts) {
+    query = query.eq('isPublished', true);
+  }
+  const { data: items, error, count } = await query
+    .order('createdAt', { ascending: false })
+    .range(from, to);
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  const total = count ?? 0;
   return NextResponse.json({
-    items,
+    items: items ?? [],
     pagination: {
       page,
       pageSize,
@@ -47,6 +52,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const created = await prisma.news.create({ data: parsed.data });
+  const { data: created, error } = await supabase
+    .from('News')
+    .insert(parsed.data)
+    .select()
+    .single();
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
   return NextResponse.json(created, { status: 201 });
 }

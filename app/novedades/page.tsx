@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import Navbar from '@/app/components/Navbar';
 
@@ -7,17 +7,23 @@ export const dynamic = 'force-dynamic';
 const PAGE_SIZE = 9;
 
 async function getNews(page: number) {
-  const skip = (page - 1) * PAGE_SIZE;
-  const [items, total] = await Promise.all([
-    prisma.news.findMany({
-      where: { isPublished: true },
-      orderBy: { createdAt: 'desc' },
-      skip,
-      take: PAGE_SIZE,
-    }),
-    prisma.news.count({ where: { isPublished: true } }),
-  ]);
-  return { items, totalPages: Math.max(1, Math.ceil(total / PAGE_SIZE)) };
+  try {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+
+    const { data, error, count } = await supabase
+      .from('News')
+      .select('*', { count: 'exact' })
+      .eq('isPublished', true)
+      .order('createdAt', { ascending: false })
+      .range(from, to);
+
+    if (error) throw error;
+    const total = count ?? 0;
+    return { items: data ?? [], totalPages: Math.max(1, Math.ceil(total / PAGE_SIZE)) };
+  } catch {
+    return { items: [], totalPages: 1 };
+  }
 }
 
 export default async function NovedadesPage({

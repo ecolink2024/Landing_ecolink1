@@ -1,10 +1,17 @@
-import { prisma } from '@/lib/prisma';
+import { supabase } from '@/lib/supabase';
 import { AdminNewsManager } from './news-manager';
 
 export const dynamic = 'force-dynamic';
 
 export default async function AdminPage() {
-  const news = await prisma.news.findMany({ orderBy: { createdAt: 'desc' } });
+  let news: Record<string, unknown>[] = [];
+  try {
+    const { data, error } = await supabase
+      .from('News')
+      .select('*')
+      .order('createdAt', { ascending: false });
+    if (!error && data) news = data;
+  } catch {}
 
   return (
     <main>
