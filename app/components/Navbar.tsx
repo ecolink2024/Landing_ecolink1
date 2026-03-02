@@ -5,10 +5,9 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const links = [
-  { label: 'INICIO', href: '/' },
-  { label: 'SOMOS', href: '/somos' },
-  { label: 'CASAS', href: '/casas' },
   { label: 'EMPRESAS', href: '/empresas' },
+  { label: 'CASAS', href: '/casas' },
+  { label: 'SOMOS ECOLINK', href: '/somos' },
   { label: 'NOVEDADES', href: '/novedades' },
 ];
 

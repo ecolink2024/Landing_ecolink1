@@ -35,7 +35,7 @@ export default async function NovedadesPage({
   const { items, totalPages } = await getNews(page);
 
   return (
-    <body className="bg-eco-beige text-eco-text-dark">
+    <div className="bg-eco-beige text-eco-text-dark">
       <Navbar />
 
       <main className="pt-10 pb-24 px-6">
@@ -107,6 +107,6 @@ export default async function NovedadesPage({
         <div className="text-3xl font-black mb-4">EcoLINK</div>
         <div className="text-xs text-eco-beige/50">© 2024 EcoLINK | Todos los derechos reservados</div>
       </footer>
-    </body>
+    </div>
   );
 }

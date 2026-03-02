@@ -21,7 +21,7 @@ export default function EmpresasPage() {
   ];
 
   return (
-    <body className="bg-white text-gray-800 antialiased">
+    <div className="bg-white text-gray-800 antialiased">
       <Navbar />
 
       {/* Hero Section */}
@@ -201,6 +201,6 @@ export default function EmpresasPage() {
           </p>
         </div>
       </footer>
-    </body>
+    </div>
   );
 }

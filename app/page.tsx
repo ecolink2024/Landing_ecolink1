@@ -24,7 +24,7 @@ export default async function Home() {
   const news = await getNews();
 
   return (
-    <body className="bg-eco-beige text-eco-text-dark">
+    <div className="bg-eco-beige text-eco-text-dark">
       <Navbar />
 
       <main>
@@ -232,6 +232,6 @@ export default async function Home() {
           </div>
         </div>
       </footer>
-    </body>
+    </div>
   );
 }
