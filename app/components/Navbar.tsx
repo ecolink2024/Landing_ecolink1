@@ -16,7 +16,7 @@ export default function Navbar() {
   const isHome = pathname === '/';
 
   return (
-    <header className="sticky top-0 z-50 bg-transparent px-6 py-3 flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-eco-green px-6 py-3 flex items-center justify-between">
       <Link href="/" className="flex items-center">
         <Image
           src="/ecolink-logo.png"
