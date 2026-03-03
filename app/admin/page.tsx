@@ -4,21 +4,21 @@ import { AdminNewsManager } from './news-manager';
 export const dynamic = 'force-dynamic';
 
 type News = {
-  id: string;
+  id: number | string;
   title: string;
   content: string;
-  imageUrl: string;
-  isPublished: boolean;
-  createdAt: string | Date;
+  image_url: string;
+  is_published: boolean;
+  created_at: string | Date;
 };
 
 export default async function AdminPage() {
   let news: News[] = [];
   try {
     const { data, error } = await supabase
-      .from('News')
+      .from('news')
       .select('*')
-      .order('createdAt', { ascending: false });
+      .order('created_at', { ascending: false });
     if (!error && data) news = data as News[];
   } catch {}
 

@@ -8,10 +8,10 @@ const PAGE_SIZE = 3;
 async function getNews() {
   try {
     const { data, error } = await supabase
-      .from('News')
+      .from('news')
       .select('*')
-      .eq('isPublished', true)
-      .order('createdAt', { ascending: false })
+      .eq('is_published', true)
+      .order('created_at', { ascending: false })
       .limit(PAGE_SIZE);
     if (error) throw error;
     return data ?? [];
@@ -141,7 +141,7 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {news.length > 0 ? news.map((item) => (
                 <div key={item.id} className="bg-eco-light-green/20 rounded-lg overflow-hidden flex flex-col">
-                  <img alt={item.title} className="w-full h-64 object-cover" src={item.imageUrl} />
+                  <img alt={item.title} className="w-full h-64 object-cover" src={item.image_url} />
                   <div className="p-6 flex-grow">
                     <h3 className="text-eco-beige font-bold mb-2">{item.title}</h3>
                     <p className="text-eco-beige/80 text-sm line-clamp-2">{item.content}</p>

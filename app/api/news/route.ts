@@ -16,12 +16,12 @@ export async function GET(request: NextRequest) {
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  let query = supabase.from('News').select('*', { count: 'exact' });
+  let query = supabase.from('news').select('*', { count: 'exact' });
   if (!includeDrafts) {
-    query = query.eq('isPublished', true);
+    query = query.eq('is_published', true);
   }
   const { data: items, error, count } = await query
-    .order('createdAt', { ascending: false })
+    .order('created_at', { ascending: false })
     .range(from, to);
 
   if (error) {
@@ -52,9 +52,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
+  const { title, content, imageUrl, isPublished } = parsed.data;
+
   const { data: created, error } = await supabase
-    .from('News')
-    .insert(parsed.data)
+    .from('news')
+    .insert({
+      title,
+      content,
+      image_url: imageUrl,
+      is_published: isPublished,
+    })
     .select()
     .single();
 

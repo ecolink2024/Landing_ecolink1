@@ -15,9 +15,17 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
+  const { title, content, imageUrl, isPublished } = parsed.data;
+
   const { data: updated, error } = await supabase
-    .from('News')
-    .update({ ...parsed.data, updatedAt: new Date().toISOString() })
+    .from('news')
+    .update({
+      title,
+      content,
+      image_url: imageUrl,
+      is_published: isPublished,
+      updated_at: new Date().toISOString(),
+    })
     .eq('id', params.id)
     .select()
     .single();
@@ -35,7 +43,7 @@ export async function DELETE(_request: NextRequest, { params }: { params: { id: 
   }
 
   const { error } = await supabase
-    .from('News')
+    .from('news')
     .delete()
     .eq('id', params.id);
 

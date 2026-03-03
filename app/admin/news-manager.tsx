@@ -3,12 +3,12 @@
 import { FormEvent, useMemo, useState } from 'react';
 
 type News = {
-  id: string;
+  id: number | string;
   title: string;
   content: string;
-  imageUrl: string;
-  isPublished: boolean;
-  createdAt: string | Date;
+  image_url: string;
+  is_published: boolean;
+  created_at: string | Date;
 };
 
 type FormState = {
@@ -61,6 +61,12 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
     setError('');
+
+    if (!form.imageUrl) {
+      setError('Subí una imagen antes de publicar.');
+      return;
+    }
+
     setLoading(true);
 
     const endpoint = editingId ? `/api/news/${editingId}` : '/api/news';
@@ -87,7 +93,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
 
   function onEdit(item: News) {
     setEditingId(item.id);
-    setForm({ title: item.title, content: item.content, imageUrl: item.imageUrl, isPublished: item.isPublished });
+    setForm({ title: item.title, content: item.content, imageUrl: item.image_url, isPublished: item.is_published });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -156,7 +162,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Imagen (archivo)</label>
+                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Imagen</label>
                 <input
                   type="file"
                   accept="image/*"
@@ -169,9 +175,6 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
                 {uploading && <p className="text-xs text-eco-green mt-1 font-medium">Subiendo imagen...</p>}
               </div>
 
-              <input type="hidden" value={form.imageUrl} />
-
-              {/* Preview miniatura */}
               {form.imageUrl && (
                 <div className="rounded-lg overflow-hidden h-40 bg-gray-100">
                   <img src={form.imageUrl} alt="Preview" className="w-full h-full object-cover" />
@@ -228,7 +231,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
             {orderedItems.map((item) => (
               <article key={item.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex gap-0">
                 <img
-                  src={item.imageUrl}
+                  src={item.image_url}
                   alt={item.title}
                   className="w-28 h-28 object-cover flex-shrink-0"
                 />
@@ -236,10 +239,10 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
                   <div>
                     <h3 className="text-eco-forest font-bold text-sm leading-snug mb-1 line-clamp-2">{item.title}</h3>
                     <p className="text-gray-400 text-xs">
-                      {new Date(item.createdAt).toLocaleDateString('es-AR')}
+                      {new Date(item.created_at).toLocaleDateString('es-AR')}
                       {' · '}
-                      <span className={item.isPublished ? 'text-eco-green font-semibold' : 'text-eco-pink font-semibold'}>
-                        {item.isPublished ? 'Publicada' : 'Borrador'}
+                      <span className={item.is_published ? 'text-eco-green font-semibold' : 'text-eco-pink font-semibold'}>
+                        {item.is_published ? 'Publicada' : 'Borrador'}
                       </span>
                     </p>
                   </div>

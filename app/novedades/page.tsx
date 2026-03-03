@@ -12,10 +12,10 @@ async function getNews(page: number) {
     const to = from + PAGE_SIZE - 1;
 
     const { data, error, count } = await supabase
-      .from('News')
+      .from('news')
       .select('*', { count: 'exact' })
-      .eq('isPublished', true)
-      .order('createdAt', { ascending: false })
+      .eq('is_published', true)
+      .order('created_at', { ascending: false })
       .range(from, to);
 
     if (error) throw error;
@@ -59,13 +59,13 @@ export default async function NovedadesPage({
               {items.map((item) => (
                 <article key={item.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
                   <img
-                    src={item.imageUrl}
+                    src={item.image_url}
                     alt={item.title}
                     className="w-full h-56 object-cover"
                   />
                   <div className="p-6 flex flex-col flex-grow">
                     <p className="text-eco-green text-xs font-bold uppercase tracking-widest mb-2">
-                      {new Date(item.createdAt).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                      {new Date(item.created_at).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}
                     </p>
                     <h2 className="text-eco-forest font-extrabold text-lg leading-snug mb-3">{item.title}</h2>
                     <p className="text-eco-forest/70 text-sm leading-relaxed line-clamp-3 flex-grow">{item.content}</p>
