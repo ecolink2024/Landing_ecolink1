@@ -19,22 +19,31 @@ export default function LoginPage() {
       password: String(formData.get('password') ?? '')
     };
 
-    const response = await fetch('/api/admin/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
-    setLoading(false);
+      setLoading(false);
 
-    if (!response.ok) {
-      const data = await response.json();
-      setError(data.error ?? 'No se pudo iniciar sesión.');
-      return;
+      if (!response.ok) {
+        let msg = 'No se pudo iniciar sesión.';
+        try {
+          const data = await response.json();
+          msg = data.error ?? msg;
+        } catch {}
+        setError(msg);
+        return;
+      }
+
+      router.push('/admin');
+      router.refresh();
+    } catch {
+      setLoading(false);
+      setError('Error de conexión. Intentá de nuevo.');
     }
-
-    router.push('/admin');
-    router.refresh();
   }
 
   return (
@@ -44,18 +53,18 @@ export default function LoginPage() {
 
       <div className="relative z-10 w-full max-w-md">
         {/* Brand */}
-        <div className="text-center mb-8">
-          <div className="text-eco-beige text-4xl font-black tracking-tighter mb-1">EcoLINK</div>
-          <p className="text-eco-light-green text-xs uppercase tracking-widest font-bold">Panel de administración</p>
+        <div className="flex flex-col items-center mb-8">
+          <img src="/ecolink-logo.png" alt="EcoLINK" className="h-16 w-auto object-contain mb-3" />
+          <p className="text-eco-beige/70 text-xs uppercase tracking-[0.2em] font-bold">Panel de administración</p>
         </div>
 
         {/* Card */}
         <div className="bg-eco-beige rounded-xl shadow-2xl p-8">
-          <h1 className="text-eco-forest text-2xl font-extrabold mb-6 text-center">Ingresar</h1>
+          <h1 className="text-eco-forest text-2xl font-extrabold mb-8 text-center tracking-tight">Ingresar</h1>
 
-          <form onSubmit={onSubmit} className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-5">
             <div>
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-[0.15em] mb-1.5">
                 Email
               </label>
               <input
@@ -63,12 +72,12 @@ export default function LoginPage() {
                 type="email"
                 required
                 placeholder="admin@ecolink.com"
-                className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors bg-white"
+                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-eco-forest text-sm focus:outline-none focus:ring-2 focus:ring-eco-green/30 focus:border-eco-green transition-all bg-white"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-[0.15em] mb-1.5">
                 Contraseña
               </label>
               <input
@@ -76,7 +85,7 @@ export default function LoginPage() {
                 type="password"
                 required
                 placeholder="••••••••"
-                className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors bg-white"
+                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-eco-forest text-sm focus:outline-none focus:ring-2 focus:ring-eco-green/30 focus:border-eco-green transition-all bg-white"
               />
             </div>
 
@@ -87,7 +96,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-eco-green text-white font-bold py-3 rounded-full uppercase tracking-widest text-sm hover:bg-eco-forest transition-colors disabled:opacity-50 mt-2"
+              className="w-full bg-eco-pink text-white font-extrabold py-3.5 rounded-full uppercase tracking-widest text-xs hover:opacity-90 transition-opacity disabled:opacity-50 mt-3 shadow-lg"
             >
               {loading ? 'Ingresando...' : 'Ingresar'}
             </button>

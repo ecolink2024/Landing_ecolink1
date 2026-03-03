@@ -6,6 +6,18 @@ export const dynamic = 'force-dynamic';
 
 const BUCKET = 'news-images';
 
+async function ensureBucketExists() {
+  const { data: buckets } = await supabase.storage.listBuckets();
+  const exists = buckets?.some((b) => b.name === BUCKET);
+  if (!exists) {
+    await supabase.storage.createBucket(BUCKET, {
+      public: true,
+      allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
+      fileSizeLimit: 5 * 1024 * 1024,
+    });
+  }
+}
+
 export async function POST(request: NextRequest) {
   const isAdmin = await isAdminAuthenticated();
   if (!isAdmin) {
@@ -17,6 +29,12 @@ export async function POST(request: NextRequest) {
 
   if (!(file instanceof File)) {
     return NextResponse.json({ error: 'Archivo inválido.' }, { status: 400 });
+  }
+
+  try {
+    await ensureBucketExists();
+  } catch (err) {
+    console.error('Error creating bucket:', err);
   }
 
   const bytes = await file.arrayBuffer();

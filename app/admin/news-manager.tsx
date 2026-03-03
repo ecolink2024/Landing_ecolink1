@@ -112,12 +112,12 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   return (
     <div className="min-h-screen bg-eco-beige">
       {/* Header */}
-      <header className="bg-eco-forest px-6 py-4 flex items-center justify-between shadow-md">
-        <div className="text-eco-beige text-2xl font-black tracking-tighter">EcoLINK</div>
-        <p className="text-eco-light-green text-xs uppercase tracking-widest font-bold hidden md:block">Panel de noticias</p>
+      <header className="bg-eco-green px-6 py-3 flex items-center justify-between shadow-md">
+        <img src="/ecolink-logo.png" alt="EcoLINK" className="h-12 w-auto object-contain" />
+        <p className="text-white/70 text-xs uppercase tracking-[0.2em] font-bold hidden md:block">Panel de noticias</p>
         <button
           onClick={onLogout}
-          className="bg-eco-pink text-white px-5 py-2 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-eco-pink/80 transition-colors"
+          className="bg-eco-pink text-white px-6 py-2 rounded-full font-extrabold text-xs uppercase tracking-widest hover:opacity-90 transition-opacity"
         >
           Salir
         </button>
@@ -169,16 +169,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
                 {uploading && <p className="text-xs text-eco-green mt-1 font-medium">Subiendo imagen...</p>}
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">URL imagen</label>
-                <input
-                  value={form.imageUrl}
-                  onChange={(e) => setForm((p) => ({ ...p, imageUrl: e.target.value }))}
-                  required
-                  placeholder="https://..."
-                  className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors"
-                />
-              </div>
+              <input type="hidden" value={form.imageUrl} />
 
               {/* Preview miniatura */}
               {form.imageUrl && (
