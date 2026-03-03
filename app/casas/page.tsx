@@ -68,14 +68,14 @@ export default function CasasPage() {
             <span className="text-eco-forest">te brindan comodidad<br />y se adaptan a espacios reducidos</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            <div className="rounded-2xl overflow-hidden shadow-lg bg-white aspect-[4/3]">
-              <img alt="Insumo 1" className="w-full h-full object-cover" src="/ecolink-logo.png" />
+            <div className="rounded-2xl overflow-hidden shadow-lg bg-white aspect-[3/3.5]">
+              <img alt="Biotachos" className="w-full h-full object-cover" src="/BiotachosCasas.jpg" />
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-lg bg-white aspect-[4/3]">
-              <img alt="Insumo 2" className="w-full h-full object-cover" src="/ecolink-logo.png" />
+            <div className="rounded-2xl overflow-hidden shadow-lg bg-white aspect-[3/3.5]">
+              <img alt="Cestos" className="w-full h-full object-cover" src="/CestosCasas.jpg" />
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-lg bg-white aspect-[4/3]">
-              <img alt="Insumo 3" className="w-full h-full object-cover" src="/ecolink-logo.png" />
+            <div className="rounded-2xl overflow-hidden shadow-lg bg-white aspect-[3/3.5]">
+              <img alt="Bolsas" className="w-full h-full object-cover" src="/BolsasCasas.png" />
             </div>
           </div>
 
