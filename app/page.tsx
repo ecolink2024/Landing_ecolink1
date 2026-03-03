@@ -159,12 +159,6 @@ export default async function Home() {
               </div>
             )}
 
-            {/* Newsletter */}
-            <div className="mt-20 max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-4">
-              <p className="text-eco-beige font-medium text-center md:text-left flex-shrink-0">Recibí las últimas novedades</p>
-              <input className="flex-grow rounded-full border-none px-6 py-3 text-eco-forest focus:ring-2 focus:ring-eco-pink" placeholder="E-mail" type="email" />
-              <button className="bg-eco-pink text-white px-8 py-3 rounded-full font-bold hover:bg-eco-pink/80">SUSCRIBIR</button>
-            </div>
           </div>
         </section>
 
