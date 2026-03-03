@@ -23,7 +23,7 @@ const initialForm: FormState = { title: '', content: '', imageUrl: '', isPublish
 export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   const [items, setItems] = useState(initialNews);
   const [form, setForm] = useState<FormState>(initialForm);
-  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<string | number | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -97,7 +97,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  async function onDelete(id: string) {
+  async function onDelete(id: string | number) {
     const confirmed = window.confirm('¿Seguro que querés eliminar esta noticia?');
     if (!confirmed) return;
 
