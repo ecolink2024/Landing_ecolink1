@@ -3,7 +3,7 @@ import Navbar from '@/app/components/Navbar';
 
 export const dynamic = 'force-dynamic';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 20;
 
 async function getNews() {
   try {
@@ -138,41 +138,26 @@ export default async function Home() {
             <h2 className="text-eco-beige text-3xl md:text-4xl font-bold mb-12 text-center md:text-left">
               Cuando nos movemos, pasan cosas
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {news.length > 0 ? news.map((item) => (
-                <div key={item.id} className="bg-eco-light-green/20 rounded-lg overflow-hidden flex flex-col">
-                  <img alt={item.title} className="w-full h-64 object-cover" src={item.image_url} />
-                  <div className="p-6 flex-grow">
-                    <h3 className="text-eco-beige font-bold mb-2">{item.title}</h3>
-                    <p className="text-eco-beige/80 text-sm line-clamp-2">{item.content}</p>
-                  </div>
+
+            {news.length > 0 ? (
+              <div className="overflow-x-auto pb-4 -mx-6 px-6 scrollbar-thin">
+                <div className="flex gap-8" style={{ minWidth: news.length > 3 ? `${news.length * 340}px` : undefined }}>
+                  {news.map((item) => (
+                    <div key={item.id} className="bg-eco-light-green/20 rounded-lg overflow-hidden flex flex-col flex-shrink-0 w-[300px] md:w-[380px]">
+                      <img alt={item.title} className="w-full h-64 object-cover" src={item.image_url} />
+                      <div className="p-6 flex-grow">
+                        <h3 className="text-eco-beige font-bold mb-2">{item.title}</h3>
+                        <p className="text-eco-beige/80 text-sm line-clamp-3">{item.content}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              )) : (
-                <>
-                  <div className="bg-eco-light-green/20 rounded-lg overflow-hidden flex flex-col">
-                    <img alt="News 1" className="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXIZoV03jsV6oLmBfPQC361yhrBCvyDPTIeim4Vw2pxCkgbzWpnfFmbTC_PoM6qw58M16NRwAcl2jfuksROdEtXKLhYAEEAocN8og1N0COkFLP2cQfTOsXPak6W3YKrrjuUvXntZd742oUbxvgXRwiCwmWZHtwRcuaIcghDidezZR1UrVzlJ-lVhxRR8UJjp1k-IGkD4QjWaVfUreV8ERupxlr8hXHimXjpNTKKRCucW0yQZMKkmMBMcWL4EanVYa4nqeAhbqt-bkT" />
-                    <div className="p-6 flex-grow">
-                      <h3 className="text-eco-beige font-bold mb-2">Eco-link en acción: Jornadas de limpieza</h3>
-                      <p className="text-eco-beige/80 text-sm">Más de 50 voluntarios se sumaron a la jornada...</p>
-                    </div>
-                  </div>
-                  <div className="bg-eco-light-green/20 rounded-lg overflow-hidden flex flex-col">
-                    <img alt="News 2" className="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtIZ08BuQ6g6a-_8wvYxgWADYMZNUUi8P-9VV1yty2tG6iWzG5d3erfXNQSHSa02oo3Wt3EWEggjEoWX2xW_wSk0t5OHZGnn-00dOqw4TDrbUrDbpvW-6mcLI6y1XPQsmOetVTWb3-hRfc8F2IJ2zdFas_Q0gvFwwh5TGCmFkeyA-O2VoUqaUfZ_YFoyLINPmF8CmpW0NFYZ1CymBXBXQwxnEoVa11PJ_zJRjDKlQmBPz-byS3c2lOHqECGoRTuZX9SSGPHO3TuFG3" />
-                    <div className="p-6 flex-grow">
-                      <h3 className="text-eco-beige font-bold mb-2">Instalamos nuevos puntos verdes</h3>
-                      <p className="text-eco-beige/80 text-sm">Nuevos contenedores en puntos estratégicos de la ciudad...</p>
-                    </div>
-                  </div>
-                  <div className="bg-eco-light-green/20 rounded-lg overflow-hidden flex flex-col">
-                    <img alt="News 3" className="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlbNFm-WQHlTWKLtBYPU8MG9b5XEZ15jdVBR11Bx-ACsSBjDMfOFKIU_XXQd2Ay00c9VU0x9-hm0eP5Tfxd66Y4AdaGqcblXU0gP6cRcLMfd-ZOb4BtBpRjL-sJ5Sns_zxpGH6jZa4l7_rcjteDafx5g-IR-1uI3j9XDO-OHgRKn7-YDzt9VnletOezFJpVo2eNFCkKrSoO2vF6-jqJc_zS9IMdMHlAtK0mSrslhW4usgPf3yxhr1KSeU8Og0LwW0D1yWkGTfeQps" />
-                    <div className="p-6 flex-grow">
-                      <h3 className="text-eco-beige font-bold mb-2">Staff EcoLINK en formación constante</h3>
-                      <p className="text-eco-beige/80 text-sm">Capacitaciones sobre economía circular y procesos...</p>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-eco-beige/60 text-lg">Próximamente novedades...</p>
+              </div>
+            )}
 
             {/* Newsletter */}
             <div className="mt-20 max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-4">
