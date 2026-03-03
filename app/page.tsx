@@ -126,7 +126,7 @@ export default async function Home() {
               <img
                 alt="EcoLINK Boxes"
                 className="rounded-lg shadow-2xl w-full object-cover h-[450px] md:h-[500px]"
-                src="/sosEmpresa.jpg"
+                src="/sosEmpresaPrincipal.jpg"
               />
             </div>
           </div>

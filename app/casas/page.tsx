@@ -109,23 +109,24 @@ export default function CasasPage() {
       </section>
 
       {/* Map Section */}
-      <section className="bg-eco-beige py-20 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-eco-forest text-3xl md:text-4xl font-extrabold leading-tight mb-6">
+      <section className="bg-eco-green">
+        <div className="grid md:grid-cols-2">
+          <div className="flex items-center justify-center px-10 py-20">
+            <h2 className="text-white text-3xl md:text-4xl font-extrabold leading-tight max-w-md">
               ¡Encontrá tu Punto más cercano para intercambiar tu bolsa llena por una nueva!
             </h2>
           </div>
-          <div className="rounded-2xl overflow-hidden shadow-xl">
+          <div className="w-full h-full min-h-[500px]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108957.02650079085!2d-64.26459885!3d-31.41348935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432985f478f5b69%3A0xb0a24f9a5366b092!2zQ8OzcmRvYmE!5e0!3m2!1ses-419!2sar!4v1709000000000!5m2!1ses-419!2sar"
               width="100%"
-              height="400"
+              height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Mapa de puntos EcoLink"
+              className="w-full h-full"
             ></iframe>
           </div>
         </div>
@@ -142,7 +143,7 @@ export default function CasasPage() {
             <div>
               <a
                 className="inline-block bg-eco-pink text-white px-8 py-3 rounded-full font-extrabold uppercase tracking-widest text-xs leading-none hover:opacity-90 transition-opacity"
-                href="https://wa.me/5493518097375"
+                href="https://wa.me/5493513086812"
                 target="_blank"
                 rel="noopener noreferrer"
               >
