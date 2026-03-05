@@ -8,10 +8,13 @@ export default function EmpresasPage() {
       {/* Hero Section */}
       <section className="relative h-[560px] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
-            alt="Empresas EcoLINK"
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
             className="w-full h-full object-cover"
-            src="/majorBussines.png"
+            src="/empresas-hero.mp4"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         </div>

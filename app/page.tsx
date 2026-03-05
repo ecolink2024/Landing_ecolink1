@@ -33,10 +33,13 @@ export default async function Home() {
         {/* Hero - se extiende detrás del navbar para fondo transparente */}
         <section className="relative min-h-screen flex items-center justify-center text-center text-white overflow-hidden -mt-[73px] pt-[73px]">
           <div className="absolute inset-0 bg-black/40 z-10"></div>
-          <img
-            alt="Hero Background"
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
             className="absolute inset-0 w-full h-full object-cover"
-            src="/hero-home.png"
+            src="/home-hero.mp4"
           />
           <div className="relative z-20 px-4 max-w-4xl">
             <h2 className="text-2xl md:text-4xl font-bold tracking-widest mb-12 md:mb-16">SOMOS ECOLINK</h2>
