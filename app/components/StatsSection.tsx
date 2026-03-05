@@ -33,7 +33,13 @@ export function StatsSection() {
   }, [hasAnimated]);
 
   return (
-    <section ref={sectionRef} className="bg-eco-green py-20 px-6">
+    <section
+      ref={sectionRef}
+      className="bg-eco-green py-20 px-6"
+      style={{
+        background: 'linear-gradient(135deg, #5E9F57 0%, #477844 100%)',
+      }}
+    >
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold mb-12">
           <span className="text-eco-text-dark">Decisiones concientes, </span>

@@ -1,6 +1,9 @@
 import { supabase } from '@/lib/supabase';
 import Navbar from '@/app/components/Navbar';
 import { StatsSection } from '@/app/components/StatsSection';
+import { NewsCarousel } from '@/app/components/NewsCarousel';
+import { ImpactCarousel } from '@/app/components/ImpactCarousel';
+import { BusinessCarousel } from '@/app/components/BusinessCarousel';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -71,78 +74,26 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Banner Mid */}
-        <section className="relative h-80 flex items-center px-6 md:px-20 overflow-hidden">
-          <img alt="Compostaje y residuos orgánicos" className="absolute inset-0 w-full h-full object-cover" src="/banner-organicos.png" />
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between gap-8 max-w-7xl mx-auto">
-            <h2 className="text-white text-3xl md:text-5xl font-bold max-w-lg leading-tight">
-              Cada acción cuenta cuando está bien gestionada
-            </h2>
-            <div className="bg-eco-beige/90 backdrop-blur p-8 rounded shadow-xl text-center min-w-[300px]">
-              <div className="text-eco-green text-4xl font-extrabold">+50 mil litros</div>
-              <div className="text-eco-forest text-xs uppercase tracking-widest font-bold mt-2">orgánicos recuperados</div>
-            </div>
-          </div>
-        </section>
+        {/* Banner Mid - Impact Carousel */}
+        <ImpactCarousel />
 
         {/* Business Section */}
-        <section className="bg-eco-beige py-24 px-6">
-          <div className="max-w-5xl mx-auto text-center mb-16">
-            <h2 className="text-eco-forest text-3xl md:text-4xl font-bold leading-none">
-              Con EcoLink hacés <span className="text-eco-green italic">mucho más</span> que reciclar
-            </h2>
-            <p className="text-eco-forest/70 text-base md:text-lg font-medium leading-none mt-4">
-              ¡Elegí la forma que mejor se adapte a vos para sumarte al cambio!
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 text-center md:text-left">
-              <h3 className="text-eco-forest text-3xl md:text-4xl font-extrabold mb-6">
-                SI SOS <span className="text-eco-green italic">EMPRESA</span>
-              </h3>
-              <p className="text-eco-forest/80 text-base leading-relaxed max-w-md mx-auto md:mx-0 mb-8">
-                Empresas, organizaciones y grandes generadores, de cualquier rubro, interesados en iniciar y fortalecer una gestión sustentable de los residuos que generan.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                <a href="/empresas" className="bg-eco-forest text-white px-8 py-3 rounded-full font-extrabold text-sm uppercase leading-none hover:bg-black transition-colors">SABER MÁS</a>
-                <a href="https://wa.me/5493518097375" target="_blank" rel="noopener noreferrer" className="bg-eco-green text-white px-8 py-3 rounded-full font-extrabold text-sm uppercase leading-none hover:opacity-90 transition-opacity">WHATSAPP</a>
-              </div>
-            </div>
-            <div className="order-1 md:order-2 group">
-              <div className="rounded-lg shadow-2xl w-full h-[450px] md:h-[500px] overflow-hidden">
-                <img
-                  alt="EcoLINK Boxes"
-                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                  src="/sosEmpresaPrincipal.jpg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <BusinessCarousel />
 
         {/* News Section */}
-        <section className="bg-eco-green py-24 px-6">
+        <section
+          className="bg-eco-green py-24 px-6"
+          style={{
+            background: 'linear-gradient(135deg, #5E9F57 0%, #477844 100%)',
+          }}
+        >
           <div className="max-w-7xl mx-auto">
             <h2 className="text-eco-beige text-3xl md:text-4xl font-bold mb-12 text-center md:text-left">
               Cuando nos movemos, pasan cosas
             </h2>
 
             {news.length > 0 ? (
-              <div className="overflow-x-auto pb-4 -mx-6 px-6 scrollbar-thin">
-                <div className="flex gap-8" style={{ minWidth: news.length > 3 ? `${news.length * 340}px` : undefined }}>
-                  {news.map((item) => (
-                    <div key={item.id} className="bg-eco-light-green/20 rounded-lg overflow-hidden flex flex-col flex-shrink-0 w-[300px] md:w-[380px]">
-                      <img alt={item.title} className="w-full h-64 object-cover" src={item.image_url} />
-                      <div className="p-6 flex-grow">
-                        <h3 className="text-eco-beige font-bold mb-2">{item.title}</h3>
-                        <p className="text-eco-beige/80 text-sm line-clamp-3">{item.content}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <NewsCarousel items={news} />
             ) : (
               <div className="text-center py-12">
                 <p className="text-eco-beige/60 text-lg">Próximamente novedades...</p>
