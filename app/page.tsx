@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase';
 import Navbar from '@/app/components/Navbar';
+import { StatsSection } from '@/app/components/StatsSection';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -53,25 +54,7 @@ export default async function Home() {
         </section>
 
         {/* Impact Stats */}
-        <section className="bg-eco-green py-20 px-6">
-          <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-eco-beige text-3xl md:text-4xl font-bold mb-12">Decisiones concientes, impacto real</h2>
-            <div className="flex flex-col items-center gap-6">
-              <div className="bg-eco-beige w-full max-w-md py-6 rounded-lg shadow-md">
-                <div className="text-eco-green text-3xl font-extrabold">8 años</div>
-                <div className="text-eco-forest text-xs uppercase tracking-widest font-bold">de trayectoria</div>
-              </div>
-              <div className="bg-eco-beige w-full max-w-md py-6 rounded-lg shadow-md">
-                <div className="text-eco-green text-3xl font-extrabold">+2000 hogares</div>
-                <div className="text-eco-forest text-xs uppercase tracking-widest font-bold">que nos eligen</div>
-              </div>
-              <div className="bg-eco-beige w-full max-w-md py-6 rounded-lg shadow-md">
-                <div className="text-eco-green text-3xl font-extrabold">+150 empresas</div>
-                <div className="text-eco-forest text-xs uppercase tracking-widest font-bold">confían en nosotros</div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <StatsSection />
 
         {/* Process */}
         <section className="bg-eco-beige py-24 px-6">
@@ -127,12 +110,14 @@ export default async function Home() {
                 <a href="https://wa.me/5493518097375" target="_blank" rel="noopener noreferrer" className="bg-eco-green text-white px-8 py-3 rounded-full font-extrabold text-sm uppercase leading-none hover:opacity-90 transition-opacity">WHATSAPP</a>
               </div>
             </div>
-            <div className="order-1 md:order-2">
-              <img
-                alt="EcoLINK Boxes"
-                className="rounded-lg shadow-2xl w-full object-cover h-[450px] md:h-[500px]"
-                src="/sosEmpresaPrincipal.jpg"
-              />
+            <div className="order-1 md:order-2 group">
+              <div className="rounded-lg shadow-2xl w-full h-[450px] md:h-[500px] overflow-hidden">
+                <img
+                  alt="EcoLINK Boxes"
+                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                  src="/sosEmpresaPrincipal.jpg"
+                />
+              </div>
             </div>
           </div>
         </section>
