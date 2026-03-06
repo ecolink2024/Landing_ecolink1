@@ -128,14 +128,14 @@ export default function CasasPage() {
           </div>
           <div className="w-full h-full min-h-[500px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108957.02650079085!2d-64.26459885!3d-31.41348935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432985f478f5b69%3A0xb0a24f9a5366b092!2zQ8OzcmRvYmE!5e0!3m2!1ses-419!2sar!4v1709000000000!5m2!1ses-419!2sar"
+              src="https://www.google.com/maps/d/embed?mid=1MXe7xswLPpaW8J2I0IwM8KN7Q2ju69PO&ehbc=2E312F"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Mapa de puntos EcoLink"
+              title="Mapa de puntos EcoLink - My Maps"
               className="w-full h-full"
             ></iframe>
           </div>
