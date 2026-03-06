@@ -71,14 +71,49 @@ export default function CasasPage() {
             <span className="text-eco-forest">te brindan comodidad<br />y se adaptan a espacios reducidos</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            <div className="rounded-2xl overflow-hidden shadow-lg bg-white aspect-[3/3.5]">
-              <img alt="Biotachos" className="w-full h-full object-cover" src="/BiotachosCasas.jpg" />
+            {/* Cesto EcoLink (antes estaba en el medio) */}
+            <div className="group relative rounded-2xl overflow-hidden shadow-lg bg-white aspect-[3/3.5]">
+              <img
+                alt="Cesto EcoLink"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                src="/CestosCasas.jpg"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-white text-xl md:text-2xl font-extrabold tracking-wide">
+                  Cesto EcoLink
+                </span>
+              </div>
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-lg bg-white aspect-[3/3.5]">
-              <img alt="Cestos" className="w-full h-full object-cover" src="/CestosCasas.jpg" />
+
+            {/* Biotacho EcoLink (ahora al centro) */}
+            <div className="group relative rounded-2xl overflow-hidden shadow-lg bg-white aspect-[3/3.5]">
+              <img
+                alt="Biotacho EcoLink"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                src="/BiotachosCasas.jpg"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-white text-xl md:text-2xl font-extrabold tracking-wide">
+                  Biotacho EcoLink
+                </span>
+              </div>
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-lg bg-white aspect-[3/3.5]">
-              <img alt="Bolsas" className="w-full h-full object-cover" src="/BolsasCasas.png" />
+
+            {/* Bolsa EcoLink */}
+            <div className="group relative rounded-2xl overflow-hidden shadow-lg bg-white aspect-[3/3.5]">
+              <img
+                alt="Bolsa EcoLink"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                src="/BolsasCasas.png"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-white text-xl md:text-2xl font-extrabold tracking-wide">
+                  Bolsa EcoLink
+                </span>
+              </div>
             </div>
           </div>
 
