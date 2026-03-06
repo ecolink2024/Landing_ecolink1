@@ -1,4 +1,5 @@
 import Navbar from '@/app/components/Navbar';
+import { CasasServicesCarousel } from '@/app/components/CasasServicesCarousel';
 
 export default function CasasPage() {
   return (
@@ -29,38 +30,9 @@ export default function CasasPage() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="bg-eco-green py-4 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-[1fr_1.2fr] gap-8 items-center">
-          <div className="py-10">
-            <p className="text-sm font-bold uppercase tracking-widest mb-4 text-white/70">Servicios</p>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
-              <span className="text-eco-forest">Recolección Domiciliaria</span><br />
-              <span className="text-white font-black">de Residuos Reciclables</span>
-            </h2>
-            <p className="text-white/80 text-sm leading-relaxed mb-2">
-              ✔ Kit de reciclaje, bolsas especiales para mantener tu espacio limpio y ordenado.
-            </p>
-            <p className="text-white/80 text-sm leading-relaxed mb-8">
-              Recolección de 1 a 4 veces por mes.
-            </p>
-            <a
-              className="inline-block bg-eco-pink text-white px-8 py-3 rounded-full text-xs font-extrabold uppercase tracking-widest leading-none shadow-lg hover:scale-105 transition-transform"
-              href="https://wa.me/5493518097375"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Quiero empezar a reciclar
-            </a>
-          </div>
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-            <img
-              alt="Recolección domiciliaria"
-              className="w-full object-cover aspect-[10/11]"
-              src="/BolsasCasas.jpg"
-            />
-          </div>
-        </div>
+      {/* Services Section — Carrusel proactivo (cambia cada 3 s): Reciclables + Orgánicos */}
+      <section className="bg-eco-green py-8 px-6">
+        <CasasServicesCarousel />
       </section>
 
       {/* Insumos Section */}
