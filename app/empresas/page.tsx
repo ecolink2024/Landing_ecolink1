@@ -1,6 +1,9 @@
 import Navbar from '@/app/components/Navbar';
 
 export default function EmpresasPage() {
+  const logos = Array.from({ length: 20 });
+  const logoRows = 5;
+
   return (
     <div className="bg-white text-gray-800 antialiased">
       <Navbar />
@@ -30,7 +33,7 @@ export default function EmpresasPage() {
       </section>
 
       {/* Services Section */}
-      <section className="bg-eco-green py-8 px-6">
+      <section className="bg-eco-green py-4 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-[1fr_1.2fr] gap-8 items-center">
           <div className="py-10">
             <p className="text-sm font-bold uppercase tracking-widest mb-4 text-white/70">Servicios</p>
@@ -51,13 +54,13 @@ export default function EmpresasPage() {
           <div className="relative rounded-2xl overflow-hidden shadow-2xl">
             <img
               alt="Workshop team"
-              className="w-full object-cover aspect-[4/5]"
+              className="w-full object-cover aspect-[10/11]"
               src="/BusinessTalking.png"
             />
             <div className="absolute inset-0 bg-black/10"></div>
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-4/5 bg-white py-4 px-6 rounded-lg shadow-xl text-center">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 bg-white py-4 px-6 rounded-lg shadow-xl text-center">
               <p className="text-eco-green font-bold text-lg">
-                <span className="mr-2">3.</span> Capacitaciones y Talleres
+                Capacitaciones y Talleres
               </p>
             </div>
           </div>
@@ -74,14 +77,28 @@ export default function EmpresasPage() {
             empieza con una decisión
           </h3>
           <p className="text-gray-500 font-semibold text-lg mb-12">Estas empresas ya se sumaron</p>
-          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-x-10 gap-y-8 items-center">
-            {Array.from({ length: 40 }).map((_, i) => (
-              <img
-                key={i}
-                alt="Partner Logo"
-                className="mx-auto h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
-                src="/ecolink-logo.png"
-              />
+          <div className="partners-marquee">
+            {Array.from({ length: logoRows }).map((_, rowIndex) => (
+              <div key={rowIndex} className="partners-marquee-row">
+                <div className="partners-marquee-inner">
+                  {logos.map((_, i) => (
+                    <img
+                      key={`row-${rowIndex}-a-${i}`}
+                      alt="Partner Logo"
+                      className="mx-auto h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
+                      src="/ecolink-logo.png"
+                    />
+                  ))}
+                  {logos.map((_, i) => (
+                    <img
+                      key={`row-${rowIndex}-b-${i}`}
+                      alt="Partner Logo"
+                      className="mx-auto h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
+                      src="/ecolink-logo.png"
+                    />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>

@@ -30,7 +30,7 @@ export default function CasasPage() {
       </section>
 
       {/* Services Section */}
-      <section className="bg-eco-green py-8 px-6">
+      <section className="bg-eco-green py-4 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-[1fr_1.2fr] gap-8 items-center">
           <div className="py-10">
             <p className="text-sm font-bold uppercase tracking-widest mb-4 text-white/70">Servicios</p>
@@ -56,7 +56,7 @@ export default function CasasPage() {
           <div className="relative rounded-2xl overflow-hidden shadow-2xl">
             <img
               alt="Recolección domiciliaria"
-              className="w-full object-cover aspect-[4/5]"
+              className="w-full object-cover aspect-[10/11]"
               src="/BolsasCasas.jpg"
             />
           </div>

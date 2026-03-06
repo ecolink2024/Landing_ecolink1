@@ -34,3 +34,29 @@ body {
 
 input, textarea, button { font: inherit; }
 label { display: block; margin-bottom: 12px; color: #222; }
+
+/* Marquee de logos empresas */
+.partners-marquee {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.partners-marquee-row {
+  overflow: hidden;
+}
+
+.partners-marquee-inner {
+  display: flex;
+  gap: 40px;
+  animation: partners-marquee 30s linear infinite;
+}
+
+@keyframes partners-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
