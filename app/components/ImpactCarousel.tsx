@@ -51,7 +51,7 @@ export function ImpactCarousel() {
   const activeSlide = SLIDES[current];
 
   return (
-    <section className="relative h-80 md:h-[340px] overflow-hidden">
+    <section className="relative h-72 sm:h-80 md:h-[340px] overflow-hidden">
       {/* Backgrounds */}
       {SLIDES.map((slide, index) => (
         <div
@@ -64,18 +64,20 @@ export function ImpactCarousel() {
             src={slide.background}
             alt={slide.heading}
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-black/25" />
         </div>
       ))}
 
       {/* Content overlay (texto y tarjeta de datos) */}
-      <div className="relative z-10 h-full px-6 md:px-20 flex items-center">
+      <div className="relative z-10 h-full px-4 sm:px-6 md:px-20 flex items-center">
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 max-w-7xl mx-auto">
           <h2 className="text-white text-2xl md:text-4xl font-bold max-w-lg leading-tight text-center md:text-left">
             {activeSlide.heading}
           </h2>
-          <div className="bg-eco-beige/95 backdrop-blur p-6 md:p-8 rounded shadow-xl text-center min-w-[260px] md:min-w-[300px]">
+          <div className="bg-eco-beige/95 backdrop-blur p-6 md:p-8 rounded shadow-xl text-center w-full max-w-xs md:max-w-none md:min-w-[300px]">
             <div className="text-eco-green text-3xl md:text-4xl font-extrabold">
               {activeSlide.value}
             </div>

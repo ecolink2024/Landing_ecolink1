@@ -45,12 +45,14 @@ export default async function Home() {
             className="absolute inset-0 w-full h-full object-cover"
             src="/home-hero.mp4"
           />
-          <div className="relative z-20 px-4 max-w-4xl">
-            <h2 className="text-2xl md:text-4xl font-bold tracking-widest mb-12 md:mb-16">SOMOS ECOLINK</h2>
-            <h1 className="text-xl md:text-3xl font-extrabold mb-6 leading-tight whitespace-nowrap">
+          <div className="relative z-20 px-4 sm:px-6 max-w-4xl">
+            <h2 className="text-xl sm:text-2xl md:text-4xl font-bold tracking-widest mb-10 md:mb-16">
+              SOMOS ECOLINK
+            </h2>
+            <h1 className="text-lg sm:text-xl md:text-3xl font-extrabold mb-6 leading-snug">
               CONECTAMOS | RECUPERAMOS | TRANSFORMAMOS
             </h1>
-            <p className="text-xl md:text-2xl font-light">
+            <p className="text-base sm:text-lg md:text-2xl font-light">
               Gestión ambiental de residuos reciclables y orgánicos en Córdoba.
             </p>
           </div>
@@ -60,7 +62,7 @@ export default async function Home() {
         <StatsSection />
 
         {/* Process */}
-        <section className="bg-eco-beige py-24 px-6">
+        <section className="bg-eco-beige py-16 md:py-24 px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-eco-green text-3xl font-extrabold mb-4">Trazamos decisiones</h2>
             <p className="text-eco-forest mb-16 max-w-2xl mx-auto leading-relaxed">
@@ -82,7 +84,7 @@ export default async function Home() {
 
         {/* News Section */}
         <section
-          className="bg-eco-green py-24 px-6"
+          className="bg-eco-green py-16 md:py-24 px-4 sm:px-6"
           style={{
             background: 'linear-gradient(135deg, #5E9F57 0%, #477844 100%)',
           }}
@@ -104,7 +106,7 @@ export default async function Home() {
         </section>
 
         {/* Final CTA */}
-        <section className="bg-eco-forest py-24 px-6 text-center text-eco-beige">
+        <section className="bg-eco-forest py-16 md:py-24 px-4 sm:px-6 text-center text-eco-beige">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-bold leading-tight">
               El futuro se construye con las decisiones que tomamos <span className="italic font-extrabold text-white">HOY</span>
@@ -113,10 +115,10 @@ export default async function Home() {
         </section>
 
         {/* Contact Form */}
-        <section className="bg-eco-beige py-24 px-6">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
+        <section id="contacto" className="bg-eco-beige py-16 md:py-24 px-4 sm:px-6 scroll-mt-24">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
             <div>
-              <h2 className="text-eco-forest text-4xl font-extrabold mb-6 leading-tight">
+              <h2 className="text-eco-forest text-3xl md:text-4xl font-extrabold mb-6 leading-tight">
                 Sé parte del cambio vos también. ¿Empezamos?
               </h2>
               <p className="text-eco-forest text-lg font-medium">Déjanos tu consulta y ayudanos.</p>
@@ -149,7 +151,7 @@ export default async function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-eco-forest text-eco-beige py-16 px-6">
+        <footer className="bg-eco-forest text-eco-beige py-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center gap-8">
           <img
             src="/ecolink-logo.png"

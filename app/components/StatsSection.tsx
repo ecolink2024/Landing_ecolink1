@@ -35,7 +35,7 @@ export function StatsSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-eco-green py-20 px-6"
+      className="bg-eco-green py-16 md:py-20 px-4 sm:px-6"
       style={{
         background: 'linear-gradient(135deg, #5E9F57 0%, #477844 100%)',
       }}

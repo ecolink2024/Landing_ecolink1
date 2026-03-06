@@ -60,7 +60,7 @@ export function BusinessCarousel() {
   const active = SLIDES[current];
 
   return (
-    <section className="bg-eco-beige py-24 px-6">
+    <section className="bg-eco-beige py-16 md:py-24 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto text-center mb-16">
         <h2 className="text-eco-forest text-3xl md:text-4xl font-bold leading-none">
           Con EcoLink hacés <span className="text-eco-green italic">mucho más</span> que reciclar
@@ -97,11 +97,13 @@ export function BusinessCarousel() {
           </div>
         </div>
         <div className="order-1 md:order-2 group">
-          <div className="rounded-lg shadow-2xl w-full h-[450px] md:h-[500px] overflow-hidden">
+          <div className="rounded-lg shadow-2xl w-full h-[280px] sm:h-[420px] md:h-[500px] overflow-hidden">
             <img
               alt={active.imageAlt}
               className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
               src={active.imageSrc}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
