@@ -124,22 +124,58 @@ export default async function Home() {
               <p className="text-eco-forest text-lg font-medium">Déjanos tu consulta y ayudanos.</p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-              <form className="space-y-4">
+              <form
+                className="space-y-4"
+                method="POST"
+                action="/api/leads?source=home"
+              >
                 <div>
-                  <label className="block text-xs font-bold text-gray-400 uppercase mb-1">Nombre</label>
-                  <input className="w-full border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:border-eco-green" placeholder="Tu nombre completo" type="text" />
+                  <label className="block text-xs font-bold text-gray-400 uppercase mb-1" htmlFor="home-nombre">
+                    Nombre
+                  </label>
+                  <input
+                    id="home-nombre"
+                    name="nombre"
+                    className="w-full border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:border-eco-green"
+                    placeholder="Tu nombre completo"
+                    type="text"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-400 uppercase mb-1">E-mail</label>
-                  <input className="w-full border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:border-eco-green" placeholder="ejemplo@correo.com" type="email" />
+                  <label className="block text-xs font-bold text-gray-400 uppercase mb-1" htmlFor="home-email">
+                    E-mail
+                  </label>
+                  <input
+                    id="home-email"
+                    name="email"
+                    className="w-full border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:border-eco-green"
+                    placeholder="ejemplo@correo.com"
+                    type="email"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-400 uppercase mb-1">Teléfono</label>
-                  <input className="w-full border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:border-eco-green" placeholder="+54 351 000 0000" type="tel" />
+                  <label className="block text-xs font-bold text-gray-400 uppercase mb-1" htmlFor="home-telefono">
+                    Teléfono
+                  </label>
+                  <input
+                    id="home-telefono"
+                    name="telefono"
+                    className="w-full border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:border-eco-green"
+                    placeholder="+54 351 000 0000"
+                    type="tel"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-400 uppercase mb-1">Consulta</label>
-                  <textarea className="w-full border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:border-eco-green" placeholder="¿En qué podemos ayudarte?" rows={4}></textarea>
+                  <label className="block text-xs font-bold text-gray-400 uppercase mb-1" htmlFor="home-consulta">
+                    Consulta
+                  </label>
+                  <textarea
+                    id="home-consulta"
+                    name="consulta"
+                    className="w-full border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:border-eco-green"
+                    placeholder="¿En qué podemos ayudarte?"
+                    rows={4}
+                  ></textarea>
                 </div>
                 <button className="w-full bg-eco-pink text-white font-bold py-4 rounded-md hover:bg-opacity-90 transition-all uppercase tracking-widest text-sm" type="submit">
                   Enviar

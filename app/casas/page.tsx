@@ -162,38 +162,54 @@ export default function CasasPage() {
             </div>
           </div>
           <div className="bg-white p-8 rounded-xl shadow-lg">
-            <form className="space-y-4" action="#" method="POST">
+            <form
+              className="space-y-4"
+              action="/api/leads?source=casas"
+              method="POST"
+            >
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase mb-1" htmlFor="nombre">Nombre</label>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1" htmlFor="nombre">
+                  Nombre
+                </label>
                 <input
                   id="nombre"
+                  name="nombre"
                   className="w-full border border-gray-200 rounded-md p-3 text-sm focus:outline-none focus:border-eco-pink"
                   placeholder="Escribe tu nombre aquí"
                   type="text"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase mb-1" htmlFor="email">Email</label>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1" htmlFor="email">
+                  Email
+                </label>
                 <input
                   id="email"
+                  name="email"
                   className="w-full border border-gray-200 rounded-md p-3 text-sm focus:outline-none focus:border-eco-pink"
                   placeholder="ejemplo@tumail.com"
                   type="email"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase mb-1" htmlFor="telefono">Teléfono</label>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1" htmlFor="telefono">
+                  Teléfono
+                </label>
                 <input
                   id="telefono"
+                  name="telefono"
                   className="w-full border border-gray-200 rounded-md p-3 text-sm focus:outline-none focus:border-eco-pink"
                   placeholder="+549 XXX XXX XXXX"
                   type="tel"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase mb-1" htmlFor="consulta">Consulta</label>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1" htmlFor="consulta">
+                  Consulta
+                </label>
                 <textarea
                   id="consulta"
+                  name="consulta"
                   className="w-full border border-gray-200 rounded-md p-3 text-sm focus:outline-none focus:border-eco-pink"
                   placeholder="Escribe tu consulta aquí"
                   rows={4}
