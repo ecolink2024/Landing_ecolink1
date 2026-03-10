@@ -6,28 +6,28 @@ const SLIDES = [
   {
     id: 'impact-training',
     background: '/homeDatos.png',
-    heading: '¿Cómo impacta nuestro trabajo en EcoLink?',
+    heading: 'IMPACTO ECOLINK',
     value: '+800 capacitaciones',
     label: 'en empresas y escuelas',
   },
   {
     id: 'impact-recyclables',
     background: '/homeBolsasData.png',
-    heading: '¿Cómo impacta nuestro trabajo en EcoLink?',
+    heading: 'IMPACTO ECOLINK',
     value: '+700.000 kg',
     label: 'reciclables recuperados',
   },
   {
     id: 'impact-actions',
     background: '/homeDataAmbiente.png',
-    heading: '¿Cómo impacta nuestro trabajo en EcoLink?',
+    heading: 'IMPACTO ECOLINK',
     value: '+100 acciones',
     label: 'sostenibles y ambientales',
   },
   {
     id: 'impact-organics',
     background: '/banner-organicos.png',
-    heading: 'Cada acción cuenta cuando está bien gestionada',
+    heading: 'IMPACTO ECOLINK',
     value: '+50 mil litros',
     label: 'orgánicos recuperados',
   },
@@ -77,7 +77,7 @@ export function ImpactCarousel() {
           <h2 className="text-white text-2xl md:text-4xl font-bold max-w-lg leading-tight text-center md:text-left">
             {activeSlide.heading}
           </h2>
-          <div className="bg-eco-beige/95 backdrop-blur p-6 md:p-8 rounded shadow-xl text-center w-full max-w-xs md:max-w-none md:min-w-[300px]">
+          <div className="bg-eco-beige/95 backdrop-blur p-6 md:p-8 rounded shadow-xl text-center w-full max-w-xs md:max-w-sm md:min-w-[280px]">
             <div className="text-eco-green text-3xl md:text-4xl font-extrabold">
               {activeSlide.value}
             </div>

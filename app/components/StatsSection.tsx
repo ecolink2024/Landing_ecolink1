@@ -42,8 +42,8 @@ export function StatsSection() {
     >
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold mb-12">
-          <span className="text-eco-text-dark">Decisiones concientes, </span>
-          <span className="text-white">impacto real</span>
+          <span className="text-eco-text-dark">GESTIÓN CONSCIENTE</span>
+          <span className="text-white"> - IMPACTO REAL</span>
         </h2>
         <div className="flex flex-col items-center gap-6">
           {STATS.map((stat, index) => (

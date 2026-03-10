@@ -39,11 +39,11 @@ export function CasasServicesCarousel() {
             </p>
             <a
               className="inline-block bg-eco-pink text-white px-8 py-3 rounded-full text-xs font-extrabold uppercase tracking-widest leading-none shadow-lg hover:scale-105 transition-transform"
-              href="https://wa.me/5493518097375"
+              href="https://wa.link/hdyfys"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Quiero empezar a reciclar
+              Quiero reciclar
             </a>
           </div>
           <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[10/11]">
@@ -77,11 +77,11 @@ export function CasasServicesCarousel() {
             </p>
             <a
               className="inline-block bg-eco-pink text-white px-8 py-3 rounded-full text-xs font-extrabold uppercase tracking-widest leading-none shadow-lg hover:scale-105 transition-transform w-fit"
-              href="https://wa.me/5493518097375"
+              href="https://wa.link/qjwkuk"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Quiero empezar a reciclar
+              Quiero compostar
             </a>
           </div>
           <div className="relative overflow-hidden">

@@ -17,12 +17,11 @@ export default function SomosPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         </div>
         <div className="container mx-auto px-6 pb-12 relative z-10">
-          <p className="text-white/80 text-xs font-bold uppercase tracking-[0.2em] mb-2">Somos EcoLink</p>
           <h1 className="text-white text-3xl md:text-5xl font-extrabold leading-tight max-w-2xl mb-4">
-            Las personas conforman EcoLink
+            SOMOS ECOLINK
           </h1>
           <p className="text-white/90 text-sm md:text-lg max-w-2xl font-light leading-relaxed">
-            Somos un equipo interdisciplinario comprometido con el cuidado del ambiente y la transformación colectiva.
+            Un equipo interdisciplinario comprometido con el cuidado del ambiente y la transformación en red.
           </p>
         </div>
       </section>

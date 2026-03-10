@@ -47,12 +47,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`top-0 z-50 w-full min-h-[73px] flex ${
-        isHome ? "absolute bg-transparent" : "sticky bg-eco-green"
+      className={`${isHome ? "fixed" : "sticky"} top-0 z-50 w-full min-h-[73px] flex ${
+        isHome ? "bg-transparent" : "bg-eco-green"
       }`}
     >
       {/* Desktop layout */}
-      <div className="hidden md:flex mx-auto w-full max-w-7xl items-center justify-between px-6 py-3">
+      <div className={`hidden md:flex mx-auto w-full max-w-7xl items-center justify-between px-6 ${isHome ? "py-2" : "py-3"}`}>
         {/* Logo izquierda */}
         <Link href="/" className="flex items-center">
           <Image
@@ -60,7 +60,7 @@ export default function Navbar() {
             alt="EcoLINK"
             width={180}
             height={60}
-            className={`h-11 w-auto object-contain ${isHome ? "mix-blend-screen" : ""}`}
+            className={`h-14 w-auto object-contain ${isHome ? "mix-blend-screen" : ""}`}
             priority
           />
         </Link>
@@ -100,7 +100,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile layout */}
-      <div className="flex md:hidden mx-auto w-full max-w-7xl items-center justify-between px-4 py-3">
+      <div className={`flex md:hidden mx-auto w-full max-w-7xl items-center justify-between px-4 ${isHome ? "py-2" : "py-3"}`}>
         <Link href="/" className="flex items-center">
           <Image
             src="/ecolink-logo.png"

@@ -44,7 +44,7 @@ export default function EmpresasPage() {
             </h2>
             <a
               className="inline-block bg-eco-pink text-white px-8 py-3 rounded-full text-xs font-extrabold uppercase tracking-widest shadow-lg hover:scale-105 transition-transform"
-              href="https://wa.me/5493518097375"
+              href="https://wa.link/p60j9m"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -116,7 +116,7 @@ export default function EmpresasPage() {
             <div>
               <a
                 className="inline-block bg-eco-pink text-white px-8 py-3 rounded-full font-extrabold uppercase tracking-widest text-xs leading-none hover:opacity-90 transition-opacity"
-                href="https://wa.me/5493518097375"
+                href="https://wa.link/p60j9m"
                 target="_blank"
                 rel="noopener noreferrer"
               >

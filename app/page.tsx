@@ -43,7 +43,7 @@ export default async function Home() {
             loop
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
-            src="/home-hero.mp4"
+            src="/homeNewVideo.mov"
           />
           <div className="relative z-20 px-4 sm:px-6 max-w-4xl">
             <h2 className="text-xl sm:text-2xl md:text-4xl font-bold tracking-widest mb-10 md:mb-16">
@@ -53,7 +53,7 @@ export default async function Home() {
               CONECTAMOS - GESTIONAMOS - TRANSFORMAMOS
             </h1>
             <p className="text-base sm:text-lg md:text-2xl font-light">
-              Gestión ambiental de residuos reciclables y orgánicos en Córdoba.
+              Gestión consciente de residuos reciclables y orgánicos en Córdoba.
             </p>
           </div>
         </section>

@@ -16,7 +16,7 @@ export default function CasasPage() {
             loop
             playsInline
             className="w-full h-full object-cover"
-            src="/casas-hero.mp4"
+            src="/casasNewVideo.MOV"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         </div>
@@ -26,7 +26,7 @@ export default function CasasPage() {
             EcoLink en tu casa
           </h1>
           <p className="text-white/90 text-sm md:text-lg max-w-2xl font-light leading-relaxed">
-            Estamos en todos los barrios de Córdoba Capital, también barrios cerrados y a las afueras.
+            Nuestro servicio de recolección abarca: Córdoba Capital y alrededores y llegamos hasta Sierras Chicas
           </p>
         </div>
       </section>
@@ -40,8 +40,7 @@ export default function CasasPage() {
       <section className="bg-eco-beige py-20 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-12">
-            <span className="text-eco-green italic">Nuestros insumos</span>{' '}
-            <span className="text-eco-forest">te brindan comodidad<br />y se adaptan a espacios reducidos</span>
+            <span className="text-eco-green italic">NUESTROS INSUMOS FUERON DISEÑADOS PARA BRINDARTE COMODIDAD Y HACERTELA FACIL</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {/* Cesto EcoLink (antes estaba en el medio) */}
@@ -91,10 +90,11 @@ export default function CasasPage() {
           </div>
 
           <h3 className="text-eco-forest text-3xl md:text-4xl font-extrabold mb-6">
-            ¡No hay excusas para empezar!
+            ¡No hay excusas para no empezar!
           </h3>
           <p className="text-eco-forest/70 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
-            Creemos que cuando las personas se conectan con sus residuos desde la observación, se abren nuevas formas de consciencia de consumo, y desde ahí, la posibilidad de construir una sociedad más sustentable.
+            Nuestros cestos y bolsas tienen un porqué:<br />
+            Creemos que cuando las personas observan sus residuos, aparecen nuevas formas de conciencia de consumo, ahí es cuando se da la posibilidad de cambios genuinos, así buscamos construir una sociedad más sustentable y sostenible.
           </p>
         </div>
       </section>
@@ -154,7 +154,7 @@ export default function CasasPage() {
             <div>
               <a
                 className="inline-block bg-eco-pink text-white px-8 py-3 rounded-full font-extrabold uppercase tracking-widest text-xs leading-none hover:opacity-90 transition-opacity"
-                href="https://wa.me/5493513086812"
+                href="https://wa.link/hdyfys"
                 target="_blank"
                 rel="noopener noreferrer"
               >
