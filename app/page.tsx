@@ -35,7 +35,7 @@ export default async function Home() {
 
       <main>
         {/* Hero - se extiende detrás del navbar para fondo transparente */}
-        <section className="relative min-h-screen flex items-center justify-center text-center text-white overflow-hidden -mt-[73px] pt-[73px]">
+        <section className="relative min-h-screen flex items-center justify-center text-center text-white overflow-hidden">
           <div className="absolute inset-0 bg-black/40 z-10"></div>
           <video
             autoPlay
@@ -50,7 +50,7 @@ export default async function Home() {
               SOMOS ECOLINK
             </h2>
             <h1 className="text-lg sm:text-xl md:text-3xl font-extrabold mb-6 leading-snug">
-              CONECTAMOS | RECUPERAMOS | TRANSFORMAMOS
+              CONECTAMOS - GESTIONAMOS - TRANSFORMAMOS
             </h1>
             <p className="text-base sm:text-lg md:text-2xl font-light">
               Gestión ambiental de residuos reciclables y orgánicos en Córdoba.

@@ -3,8 +3,9 @@ import { CasasServicesCarousel } from '@/app/components/CasasServicesCarousel';
 
 export default function CasasPage() {
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-eco-beige">
+    <>
       <Navbar />
+      <div className="w-full overflow-x-hidden bg-eco-beige">
 
       {/* Hero */}
       <section className="relative h-[560px] flex items-end overflow-hidden">
@@ -246,5 +247,6 @@ export default function CasasPage() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
