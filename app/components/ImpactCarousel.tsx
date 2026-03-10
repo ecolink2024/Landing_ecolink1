@@ -1,35 +1,35 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const SLIDES = [
   {
-    id: 'impact-training',
-    background: '/homeDatos.png',
-    heading: 'IMPACTO ECOLINK',
-    value: '+800 capacitaciones',
-    label: 'en empresas y escuelas',
+    id: "impact-training",
+    background: "/homeDatos.png",
+    heading: "IMPACTO ECOLINK",
+    value: "+800 capacitaciones",
+    label: "en empresas y escuelas",
   },
   {
-    id: 'impact-recyclables',
-    background: '/homeBolsasData.png',
-    heading: 'IMPACTO ECOLINK',
-    value: '+700.000 kg',
-    label: 'reciclables recuperados',
+    id: "impact-recyclables",
+    background: "/homeBolsasData.png",
+    heading: "IMPACTO ECOLINK",
+    value: "+700.000 kg",
+    label: "reciclables recuperados",
   },
   {
-    id: 'impact-actions',
-    background: '/homeDataAmbiente.png',
-    heading: 'IMPACTO ECOLINK',
-    value: '+100 acciones',
-    label: 'sostenibles y ambientales',
+    id: "impact-actions",
+    background: "/homeDataAmbiente.png",
+    heading: "IMPACTO ECOLINK",
+    value: "+100 acciones",
+    label: "sostenibles y ambientales",
   },
   {
-    id: 'impact-organics',
-    background: '/banner-organicos.png',
-    heading: 'IMPACTO ECOLINK',
-    value: '+50 mil litros',
-    label: 'orgánicos recuperados',
+    id: "impact-organics",
+    background: "/banner-organicos.png",
+    heading: "IMPACTO ECOLINK",
+    value: "+50 mil litros",
+    label: "orgánicos recuperados",
   },
 ];
 
@@ -57,7 +57,7 @@ export function ImpactCarousel() {
         <div
           key={slide.id}
           className={`absolute inset-0 transition-opacity duration-700 ease-out ${
-            index === current ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            index === current ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
           <img
@@ -97,7 +97,7 @@ export function ImpactCarousel() {
               type="button"
               onClick={() => setCurrent(index)}
               className={`h-2 w-2 rounded-full transition-colors ${
-                index === current ? 'bg-white' : 'bg-white/40'
+                index === current ? "bg-white" : "bg-white/40"
               }`}
               aria-label={`Ir a la diapositiva ${index + 1}`}
             />
@@ -107,4 +107,3 @@ export function ImpactCarousel() {
     </section>
   );
 }
-

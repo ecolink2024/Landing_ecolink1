@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-const INTERVAL_MS = 3000;
-const TITLE_SUFFIX_LIGHT = 'rgba(255,255,255,0.85)';
+const INTERVAL_MS = 5000;
+const TITLE_SUFFIX_LIGHT = "rgba(255,255,255,0.85)";
 
 export function CasasServicesCarousel() {
   const [current, setCurrent] = useState(0);
@@ -21,18 +21,25 @@ export function CasasServicesCarousel() {
         {/* Slide 0: Reciclables — estructura original */}
         <div
           className={`grid md:grid-cols-[1fr_1.2fr] gap-8 items-center transition-opacity duration-500 ${
-            current === 0 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
+            current === 0
+              ? "opacity-100"
+              : "opacity-0 absolute inset-0 pointer-events-none"
           }`}
         >
           <div className="py-10">
-            <p className="text-sm font-bold uppercase tracking-widest mb-4 text-white/70">Servicios</p>
+            <p className="text-sm font-bold uppercase tracking-widest mb-4 text-white/70">
+              Servicios
+            </p>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
               <span className="text-eco-forest">Recolección Domiciliaria</span>
               <br />
-              <span className="text-white font-black">de Residuos Reciclables</span>
+              <span className="text-white font-black">
+                de Residuos Reciclables
+              </span>
             </h2>
             <p className="text-white/80 text-sm leading-relaxed mb-2">
-              ✔ Kit de reciclaje, bolsas especiales para mantener tu espacio limpio y ordenado.
+              ✔ Kit de reciclaje, bolsas especiales para mantener tu espacio
+              limpio y ordenado.
             </p>
             <p className="text-white/80 text-sm leading-relaxed mb-8">
               Recolección de 1 a 4 veces por mes.
@@ -58,7 +65,9 @@ export function CasasServicesCarousel() {
         {/* Slide 1: Orgánicos — misma estructura, fondo verde como el otro */}
         <div
           className={`rounded-2xl overflow-hidden shadow-2xl grid md:grid-cols-[1fr_1.2fr] min-h-[380px] md:min-h-[420px] transition-opacity duration-500 ${
-            current === 1 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
+            current === 1
+              ? "opacity-100"
+              : "opacity-0 absolute inset-0 pointer-events-none"
           }`}
         >
           <div className="flex flex-col justify-center px-8 md:px-10 py-10 bg-eco-green">
@@ -73,7 +82,8 @@ export function CasasServicesCarousel() {
               </span>
             </h2>
             <p className="text-white/90 text-sm leading-relaxed mb-8">
-              Elegí esta opción y que tus residuos orgánicos vuelvan a la tierra. ¡Reducis hasta un 50%!
+              Elegí esta opción y que tus residuos orgánicos vuelvan a la
+              tierra. ¡Reducis hasta un 50%!
             </p>
             <a
               className="inline-block bg-eco-pink text-white px-8 py-3 rounded-full text-xs font-extrabold uppercase tracking-widest leading-none shadow-lg hover:scale-105 transition-transform w-fit"
@@ -98,13 +108,13 @@ export function CasasServicesCarousel() {
         <button
           type="button"
           onClick={() => setCurrent(0)}
-          className={`h-2 w-2 rounded-full transition-colors ${current === 0 ? 'bg-white' : 'bg-white/40'}`}
+          className={`h-2 w-2 rounded-full transition-colors ${current === 0 ? "bg-white" : "bg-white/40"}`}
           aria-label="Ver Recyclables"
         />
         <button
           type="button"
           onClick={() => setCurrent(1)}
-          className={`h-2 w-2 rounded-full transition-colors ${current === 1 ? 'bg-white' : 'bg-white/40'}`}
+          className={`h-2 w-2 rounded-full transition-colors ${current === 1 ? "bg-white" : "bg-white/40"}`}
           aria-label="Ver Orgánicos"
         />
       </div>

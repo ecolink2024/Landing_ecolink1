@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 const STATS = [
-  { value: '+8 años', label: 'en Córdoba Capital' },
-  { value: '+2000 hogares', label: 'nos eligen' },
-  { value: '+150 empresas', label: 'cordobesas son parte' },
+  { value: "+8 años", label: "en Córdoba Capital" },
+  { value: "+2000 hogares", label: "nos eligen" },
+  { value: "+150 empresas", label: "cordobesas son parte" },
 ];
 
 export function StatsSection() {
@@ -24,7 +24,7 @@ export function StatsSection() {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     observer.observe(node);
@@ -37,7 +37,7 @@ export function StatsSection() {
       ref={sectionRef}
       className="bg-eco-green py-16 md:py-20 px-4 sm:px-6"
       style={{
-        background: 'linear-gradient(135deg, #5E9F57 0%, #477844 100%)',
+        background: "linear-gradient(135deg, #5E9F57 0%, #477844 100%)",
       }}
     >
       <div className="max-w-5xl mx-auto text-center">
@@ -50,7 +50,9 @@ export function StatsSection() {
             <div
               key={stat.value}
               className={`bg-eco-beige w-full max-w-xl py-6 rounded-xl shadow-md transform transition-all duration-700 ease-out ${
-                hasAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                hasAnimated
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
@@ -67,4 +69,3 @@ export function StatsSection() {
     </section>
   );
 }
-

@@ -52,7 +52,9 @@ export default function Navbar() {
       }`}
     >
       {/* Desktop layout */}
-      <div className={`hidden md:flex mx-auto w-full max-w-7xl items-center justify-between px-6 ${isHome ? "py-2" : "py-3"}`}>
+      <div
+        className={`hidden md:flex mx-auto w-full max-w-7xl items-center justify-between px-6 ${isHome ? "py-2" : "py-3"}`}
+      >
         {/* Logo izquierda */}
         <Link href="/" className="flex items-center">
           <Image
@@ -100,7 +102,9 @@ export default function Navbar() {
       </div>
 
       {/* Mobile layout */}
-      <div className={`flex md:hidden mx-auto w-full max-w-7xl items-center justify-between px-4 ${isHome ? "py-2" : "py-3"}`}>
+      <div
+        className={`flex md:hidden mx-auto w-full max-w-7xl items-center justify-between px-4 ${isHome ? "py-2" : "py-3"}`}
+      >
         <Link href="/" className="flex items-center">
           <Image
             src="/ecolink-logo.png"
