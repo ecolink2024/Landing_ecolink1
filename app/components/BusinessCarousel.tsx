@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 type Slide = {
   id: string;
   titlePrefix: string;
@@ -17,19 +15,6 @@ type Slide = {
 
 const SLIDES: Slide[] = [
   {
-    id: "empresa",
-    titlePrefix: "SI SOS",
-    titleHighlight: "EMPRESA",
-    description:
-      "Empresas, organizaciones y grandes generadores, de cualquier rubro, interesados en iniciar y fortalecer una gestión sustentable de los residuos que generan.",
-    primaryHref: "/empresas",
-    primaryLabel: "SABER MÁS",
-    secondaryHref: "https://wa.link/p60j9m",
-    secondaryLabel: "WHATSAPP",
-    imageSrc: "/sosEmpresaPrincipal.jpg",
-    imageAlt: "EcoLINK Boxes",
-  },
-  {
     id: "casas",
     titlePrefix: "SI SOS",
     titleHighlight: "CASA",
@@ -42,23 +27,22 @@ const SLIDES: Slide[] = [
     imageSrc: "/homeCasas.png",
     imageAlt: "Familias reciclando con EcoLink",
   },
+  {
+    id: "empresa",
+    titlePrefix: "SI SOS",
+    titleHighlight: "EMPRESA",
+    description:
+      "Empresas, organizaciones y grandes generadores, de cualquier rubro, interesados en iniciar y fortalecer una gestión sustentable de los residuos que generan.",
+    primaryHref: "/empresas",
+    primaryLabel: "SABER MÁS",
+    secondaryHref: "https://wa.link/p60j9m",
+    secondaryLabel: "WHATSAPP",
+    imageSrc: "/sosEmpresaPrincipal.jpg",
+    imageAlt: "EcoLINK Boxes",
+  },
 ];
 
 export function BusinessCarousel() {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    if (SLIDES.length <= 1) return;
-
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % SLIDES.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const active = SLIDES[current];
-
   return (
     <section className="bg-eco-beige py-16 md:py-24 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto text-center mb-16">
@@ -71,60 +55,65 @@ export function BusinessCarousel() {
         </p>
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="order-2 md:order-1 text-center md:text-left">
-          <h3 className="text-eco-forest text-3xl md:text-4xl font-extrabold mb-6">
-            {active.titlePrefix}{" "}
-            <span className="text-eco-green italic">
-              {active.titleHighlight}
-            </span>
-          </h3>
-          <p className="text-eco-forest/80 text-base leading-relaxed max-w-md mx-auto md:mx-0 mb-8">
-            {active.description}
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-            <a
-              href={active.primaryHref}
-              className="bg-eco-forest text-white px-8 py-3 rounded-full font-extrabold text-sm uppercase leading-none hover:bg-black transition-colors"
-            >
-              {active.primaryLabel}
-            </a>
-            <a
-              href={active.secondaryHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-eco-green text-white px-8 py-3 rounded-full font-extrabold text-sm uppercase leading-none hover:opacity-90 transition-opacity"
-            >
-              {active.secondaryLabel}
-            </a>
-          </div>
-        </div>
-        <div className="order-1 md:order-2 group">
-          <div className="rounded-lg shadow-2xl w-full h-[280px] sm:h-[420px] md:h-[500px] overflow-hidden">
-            <img
-              alt={active.imageAlt}
-              className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-              src={active.imageSrc}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </div>
-      </div>
+      <div className="max-w-6xl mx-auto flex flex-col gap-16 md:gap-24">
+        {SLIDES.map((slide) => {
+          const isEmpresa = slide.id === "empresa";
 
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-10">
-        {SLIDES.map((slide, index) => (
-          <button
-            key={slide.id}
-            type="button"
-            onClick={() => setCurrent(index)}
-            className={`h-2 w-2 rounded-full transition-colors ${
-              index === current ? "bg-eco-forest" : "bg-eco-forest/30"
-            }`}
-            aria-label={`Ver opción ${slide.titleHighlight.toLowerCase()}`}
-          />
-        ))}
+          const textOrder = isEmpresa
+            ? "order-2 md:order-2"
+            : "order-2 md:order-1";
+          const imageOrder = isEmpresa
+            ? "order-1 md:order-1"
+            : "order-1 md:order-2";
+
+          return (
+            <div
+              key={slide.id}
+              className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+            >
+              <div
+                className={`${textOrder} text-center md:text-left`}
+              >
+                <h3 className="text-eco-forest text-3xl md:text-4xl font-extrabold mb-6">
+                  {slide.titlePrefix}{" "}
+                  <span className="text-eco-green italic">
+                    {slide.titleHighlight}
+                  </span>
+                </h3>
+                <p className="text-eco-forest/80 text-base leading-relaxed max-w-md mx-auto md:mx-0 mb-8">
+                  {slide.description}
+                </p>
+                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                  <a
+                    href={slide.primaryHref}
+                    className="bg-eco-forest text-white px-8 py-3 rounded-full font-extrabold text-sm uppercase leading-none hover:bg-black transition-colors"
+                  >
+                    {slide.primaryLabel}
+                  </a>
+                  <a
+                    href={slide.secondaryHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-eco-green text-white px-8 py-3 rounded-full font-extrabold text-sm uppercase leading-none hover:opacity-90 transition-opacity"
+                  >
+                    {slide.secondaryLabel}
+                  </a>
+                </div>
+              </div>
+              <div className={`${imageOrder} group`}>
+                <div className="rounded-lg shadow-2xl w-full h-[280px] sm:h-[420px] md:h-[500px] overflow-hidden">
+                  <img
+                    alt={slide.imageAlt}
+                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                    src={slide.imageSrc}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

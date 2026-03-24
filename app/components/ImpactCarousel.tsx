@@ -51,7 +51,7 @@ export function ImpactCarousel() {
   const activeSlide = SLIDES[current];
 
   return (
-    <section className="relative h-72 sm:h-80 md:h-[340px] overflow-hidden">
+    <section className="relative isolate overflow-hidden md:h-[340px] md:min-h-[340px]">
       {/* Backgrounds */}
       {SLIDES.map((slide, index) => (
         <div
@@ -63,7 +63,7 @@ export function ImpactCarousel() {
           <img
             src={slide.background}
             alt={slide.heading}
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
             loading="lazy"
             decoding="async"
           />
@@ -72,16 +72,16 @@ export function ImpactCarousel() {
       ))}
 
       {/* Content overlay (texto y tarjeta de datos) */}
-      <div className="relative z-10 h-full px-4 sm:px-6 md:px-20 flex items-center">
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 max-w-7xl mx-auto">
-          <h2 className="text-white text-2xl md:text-4xl font-bold max-w-lg leading-tight text-center md:text-left">
+      <div className="relative z-10 flex px-4 py-8 pb-14 sm:px-6 sm:py-10 sm:pb-16 md:h-[340px] md:min-h-0 md:items-center md:px-20 md:py-0 md:pb-12">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 md:h-full md:flex-row md:items-center md:justify-between md:gap-8">
+          <h2 className="max-w-lg shrink-0 text-center text-2xl font-bold leading-tight text-white md:text-left md:text-4xl">
             {activeSlide.heading}
           </h2>
-          <div className="bg-eco-beige/95 backdrop-blur rounded-full shadow-xl flex flex-col items-center justify-center text-center w-64 h-64 sm:w-[280px] sm:h-[280px] md:w-72 md:h-72 shrink-0 p-5 sm:p-6 md:p-7">
-            <div className="text-eco-green text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight px-1">
+          <div className="flex aspect-square w-[min(17.5rem,calc(100vw-2.5rem))] shrink-0 flex-col items-center justify-center rounded-full bg-eco-beige/95 p-4 text-center shadow-xl backdrop-blur sm:p-6 md:w-72 md:p-7">
+            <div className="px-1 text-xl font-extrabold leading-tight text-eco-green sm:text-3xl md:text-4xl">
               {activeSlide.value}
             </div>
-            <div className="text-eco-forest text-[10px] sm:text-xs md:text-sm uppercase tracking-widest font-bold mt-2 leading-snug px-2">
+            <div className="mt-2 px-2 text-[10px] font-bold uppercase leading-snug tracking-widest text-eco-forest sm:text-xs md:text-sm">
               {activeSlide.label}
             </div>
           </div>
@@ -90,7 +90,7 @@ export function ImpactCarousel() {
 
       {/* Dots */}
       {SLIDES.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
           {SLIDES.map((slide, index) => (
             <button
               key={slide.id}
