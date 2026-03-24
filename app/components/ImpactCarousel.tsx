@@ -77,11 +77,11 @@ export function ImpactCarousel() {
           <h2 className="text-white text-2xl md:text-4xl font-bold max-w-lg leading-tight text-center md:text-left">
             {activeSlide.heading}
           </h2>
-          <div className="bg-eco-beige/95 backdrop-blur p-6 md:p-8 rounded shadow-xl text-center w-full max-w-xs md:max-w-sm md:min-w-[280px]">
-            <div className="text-eco-green text-3xl md:text-4xl font-extrabold">
+          <div className="bg-eco-beige/95 backdrop-blur rounded-full shadow-xl flex flex-col items-center justify-center text-center w-64 h-64 sm:w-[280px] sm:h-[280px] md:w-72 md:h-72 shrink-0 p-5 sm:p-6 md:p-7">
+            <div className="text-eco-green text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight px-1">
               {activeSlide.value}
             </div>
-            <div className="text-eco-forest text-xs md:text-sm uppercase tracking-widest font-bold mt-2">
+            <div className="text-eco-forest text-[10px] sm:text-xs md:text-sm uppercase tracking-widest font-bold mt-2 leading-snug px-2">
               {activeSlide.label}
             </div>
           </div>

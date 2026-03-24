@@ -1,13 +1,17 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { WhatsAppWidget } from '@/app/components/WhatsAppWidget';
+import "./globals.css";
+import type { Metadata } from "next";
+import { WhatsAppWidget } from "@/app/components/WhatsAppWidget";
 
 export const metadata: Metadata = {
-  title: 'EcoLink',
-  description: 'Comunidad sustentable con noticias y acciones de impacto.'
+  title: "EcoLink",
+  description: "Comunidad sustentable con noticias y acciones de impacto.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="es">
       <head>

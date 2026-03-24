@@ -1,5 +1,4 @@
 import Navbar from "@/app/components/Navbar";
-import { EmpresasServicesCarousel } from "@/app/components/EmpresasServicesCarousel";
 
 export default function EmpresasPage() {
   const logos = Array.from({ length: 20 });
@@ -62,7 +61,19 @@ export default function EmpresasPage() {
               Sumá a tu empresa
             </a>
           </div>
-          <EmpresasServicesCarousel />
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <img
+              alt="Workshop team"
+              className="w-full object-cover aspect-[10/11]"
+              src="/BusinessTalking.png"
+            />
+            <div className="absolute inset-0 bg-black/10"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 bg-white py-4 px-6 rounded-lg shadow-xl text-center">
+              <p className="text-eco-green font-bold text-lg">
+                Capacitaciones y Talleres
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
