@@ -21,6 +21,7 @@ type FormState = {
 };
 
 const initialForm: FormState = { title: '', excerpt: '', content: '', imageUrl: '', isPublished: true };
+const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
 
 export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   const [items, setItems] = useState(initialNews);
@@ -40,6 +41,11 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   }
 
   async function onUpload(file: File) {
+    if (file.size > MAX_UPLOAD_BYTES) {
+      setError('La imagen supera 4MB. En deploy ese tamaño falla (HTTP 413).');
+      return;
+    }
+
     setUploading(true);
     setError('');
 
@@ -65,7 +71,9 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
       }
 
       if (!response.ok) {
-        const fallback = `No se pudo subir la imagen (HTTP ${response.status}).`;
+        const fallback = response.status === 413
+          ? 'La imagen supera 4MB. Reducí el tamaño e intentá nuevamente.'
+          : `No se pudo subir la imagen (HTTP ${response.status}).`;
         const best =
           data?.error ??
           (rawText ? rawText.slice(0, 160) : null) ??
