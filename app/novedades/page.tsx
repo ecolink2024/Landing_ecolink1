@@ -59,7 +59,11 @@ export default async function NovedadesPage({
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {items.map((item) => (
-                <article key={item.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                <Link
+                  key={item.id}
+                  href={`/novedades/${item.id}`}
+                  className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col"
+                >
                   <img
                     src={item.image_url}
                     alt={item.title}
@@ -70,9 +74,9 @@ export default async function NovedadesPage({
                       {new Date(item.created_at).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}
                     </p>
                     <h2 className="text-eco-forest font-extrabold text-lg leading-snug mb-3">{item.title}</h2>
-                    <p className="text-eco-forest/70 text-sm leading-relaxed line-clamp-3 flex-grow">{item.content}</p>
+                    <p className="text-eco-forest/70 text-sm leading-relaxed line-clamp-3 flex-grow">{item.excerpt ?? item.content}</p>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
           )}

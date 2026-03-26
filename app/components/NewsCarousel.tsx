@@ -1,10 +1,12 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 type NewsItem = {
   id: string | number;
   title: string;
+  excerpt?: string;
   content: string;
   image_url: string;
 };
@@ -43,8 +45,9 @@ export function NewsCarousel({ items }: Props) {
     <div className="relative">
       <div className="flex gap-8 justify-center">
         {visibleItems.map((item) => (
-          <div
+          <Link
             key={item.id}
+            href={`/novedades/${item.id}`}
             className="group bg-eco-light-green/20 hover:bg-[#FDFCF8] rounded-lg overflow-hidden flex flex-col flex-shrink-0 w-[300px] md:w-[380px] transition-colors duration-300"
           >
             <img
@@ -57,10 +60,10 @@ export function NewsCarousel({ items }: Props) {
                 {item.title}
               </h3>
               <p className="text-eco-beige/80 group-hover:text-[#477844] text-sm line-clamp-3 transition-colors duration-300">
-                {item.content}
+                {item.excerpt ?? item.content}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

@@ -8,6 +8,7 @@ export const fetchCache = 'force-no-store';
 type News = {
   id: number | string;
   title: string;
+  excerpt?: string;
   content: string;
   image_url: string;
   is_published: boolean;

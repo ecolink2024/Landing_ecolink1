@@ -5,6 +5,7 @@ import { FormEvent, useMemo, useState } from 'react';
 type News = {
   id: number | string;
   title: string;
+  excerpt?: string;
   content: string;
   image_url: string;
   is_published: boolean;
@@ -13,12 +14,13 @@ type News = {
 
 type FormState = {
   title: string;
+  excerpt: string;
   content: string;
   imageUrl: string;
   isPublished: boolean;
 };
 
-const initialForm: FormState = { title: '', content: '', imageUrl: '', isPublished: true };
+const initialForm: FormState = { title: '', excerpt: '', content: '', imageUrl: '', isPublished: true };
 
 export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   const [items, setItems] = useState(initialNews);
@@ -40,22 +42,50 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   async function onUpload(file: File) {
     setUploading(true);
     setError('');
-    const formData = new FormData();
-    formData.append('file', file);
 
-    const response = await fetch('/api/upload', {
-      method: 'POST',
-      body: formData
-    });
-    setUploading(false);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
 
-    if (!response.ok) {
-      setError('No se pudo subir la imagen.');
-      return;
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      let data: any = null;
+      let rawText: string | null = null;
+      try {
+        data = await response.json();
+      } catch {
+        try {
+          rawText = await response.text();
+        } catch {
+          rawText = null;
+        }
+      }
+
+      if (!response.ok) {
+        const fallback = `No se pudo subir la imagen (HTTP ${response.status}).`;
+        const best =
+          data?.error ??
+          (rawText ? rawText.slice(0, 160) : null) ??
+          fallback;
+        setError(best);
+        return;
+      }
+
+      if (!data?.secureUrl) {
+        setError('La subida respondió OK pero sin URL de imagen.');
+        return;
+      }
+
+      setForm((prev) => ({ ...prev, imageUrl: data.secureUrl }));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Error de red subiendo la imagen.';
+      setError(message);
+    } finally {
+      setUploading(false);
     }
-
-    const data = await response.json();
-    setForm((prev) => ({ ...prev, imageUrl: data.secureUrl }));
   }
 
   async function onSubmit(event: FormEvent) {
@@ -93,7 +123,13 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
 
   function onEdit(item: News) {
     setEditingId(item.id);
-    setForm({ title: item.title, content: item.content, imageUrl: item.image_url, isPublished: item.is_published });
+    setForm({
+      title: item.title,
+      excerpt: item.excerpt ?? '',
+      content: item.content,
+      imageUrl: item.image_url,
+      isPublished: item.is_published
+    });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -150,6 +186,18 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
               </div>
 
               <div>
+                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Bajada</label>
+                <textarea
+                  rows={2}
+                  value={form.excerpt}
+                  onChange={(e) => setForm((p) => ({ ...p, excerpt: e.target.value }))}
+                  required
+                  placeholder="Escribí la bajada (resumen corto de la noticia)..."
+                  className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors resize-none"
+                />
+              </div>
+
+              <div>
                 <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Contenido</label>
                 <textarea
                   rows={6}
@@ -168,6 +216,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
                   accept="image/*"
                   onChange={(e) => {
                     const file = e.target.files?.[0];
+                    e.currentTarget.value = '';
                     if (file) onUpload(file);
                   }}
                   className="w-full text-sm text-eco-forest file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-eco-green file:text-white hover:file:bg-eco-forest file:cursor-pointer file:transition-colors"

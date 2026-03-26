@@ -15,12 +15,13 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const { title, content, imageUrl, isPublished } = parsed.data;
+  const { title, excerpt, content, imageUrl, isPublished } = parsed.data;
 
   const { data: updated, error } = await supabase
     .from('news')
     .update({
       title,
+      excerpt,
       content,
       image_url: imageUrl,
       is_published: isPublished,

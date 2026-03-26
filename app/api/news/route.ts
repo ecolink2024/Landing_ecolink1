@@ -52,12 +52,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const { title, content, imageUrl, isPublished } = parsed.data;
+  const { title, excerpt, content, imageUrl, isPublished } = parsed.data;
 
   const { data: created, error } = await supabase
     .from('news')
     .insert({
       title,
+      excerpt,
       content,
       image_url: imageUrl,
       is_published: isPublished,
