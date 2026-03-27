@@ -1,6 +1,41 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 
 export default function EmpresasPage() {
+  const [serviceSlide, setServiceSlide] = useState(0);
+  const serviceSlides = [
+    {
+      title: "Gestión Consciente de Residuos Reciclables",
+      imageSrc: "/gConsResRec.jpg",
+    },
+    {
+      title: "Gestión Consciente de Residuos Orgánicos",
+      imageSrc: "/gConsResOrganicos.jpg",
+    },
+    {
+      title: "Capacitaciones y Talleres",
+      imageSrc: "/CapacitacionesyTalleres.JPG",
+    },
+    {
+      title: "Certificaciones aptas normativa municipal",
+      imageSrc: "/Certificaciones.jpeg",
+    },
+    {
+      title: "Sustentabilidad para Eventos Corporativos",
+      imageSrc: "/SustpEventos.jpg",
+    },
+    {
+      title: "Medición, Verificación y Compensación de Huella de Carbono",
+      imageSrc: "/Huella.jpg",
+    },
+    {
+      title: "Acciones de Responsabilidad Social Empresarial – Forestaciones",
+      imageSrc: "/AccionesRespSocialEmpresarial.jpeg",
+    },
+  ];
+
   const allPartnerLogos = Array.from({ length: 46 }, (_, index) => {
     const n = String(index + 1).padStart(2, "0");
     return `/Logos/LOGOS_EDG-${n}.jpg`;
@@ -8,6 +43,14 @@ export default function EmpresasPage() {
   const logoRows = [0, 1, 2].map((rowIndex) =>
     allPartnerLogos.filter((_, logoIndex) => logoIndex % 3 === rowIndex),
   );
+
+  useEffect(() => {
+    if (serviceSlides.length <= 1) return;
+    const interval = setInterval(() => {
+      setServiceSlide((prev) => (prev + 1) % serviceSlides.length);
+    }, 3200);
+    return () => clearInterval(interval);
+  }, [serviceSlides.length]);
 
   return (
     <div className="bg-white text-gray-800 antialiased">
@@ -42,7 +85,7 @@ export default function EmpresasPage() {
       </section>
 
       {/* Services Section */}
-      <section className="bg-eco-green py-4 px-6">
+      <section className="bg-eco-green py-[calc(1rem+0.5cm)] px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-[1fr_1.2fr] gap-8 items-center">
           <div className="py-10">
             <p className="text-sm font-bold uppercase tracking-widest mb-4 text-white/70">
@@ -67,16 +110,23 @@ export default function EmpresasPage() {
             </a>
           </div>
           <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-            <img
-              alt="Workshop team"
-              className="w-full object-cover aspect-[10/11]"
-              src="/BusinessTalking.png"
-            />
-            <div className="absolute inset-0 bg-black/10"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 bg-white py-4 px-6 rounded-lg shadow-xl text-center">
-              <p className="text-eco-green font-bold text-lg">
-                Capacitaciones y Talleres
-              </p>
+            <div className="relative aspect-[10/10.6]">
+              {serviceSlides.map((slide, index) => (
+                <img
+                  key={slide.title}
+                  alt={slide.title}
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${
+                    index === serviceSlide ? "opacity-100" : "opacity-0"
+                  }`}
+                  src={slide.imageSrc}
+                />
+              ))}
+              <div className="absolute inset-0 bg-black/10"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 bg-white py-4 px-6 rounded-lg shadow-xl text-center">
+                <p className="text-eco-green font-bold text-lg">
+                  {serviceSlides[serviceSlide].title}
+                </p>
+              </div>
             </div>
           </div>
         </div>
