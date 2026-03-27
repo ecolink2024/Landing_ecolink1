@@ -1,8 +1,13 @@
 import Navbar from "@/app/components/Navbar";
 
 export default function EmpresasPage() {
-  const logos = Array.from({ length: 20 });
-  const logoRows = 5;
+  const allPartnerLogos = Array.from({ length: 46 }, (_, index) => {
+    const n = String(index + 1).padStart(2, "0");
+    return `/Logos/LOGOS_EDG-${n}.jpg`;
+  });
+  const logoRows = [0, 1, 2].map((rowIndex) =>
+    allPartnerLogos.filter((_, logoIndex) => logoIndex % 3 === rowIndex),
+  );
 
   return (
     <div className="bg-white text-gray-800 antialiased">
@@ -90,23 +95,23 @@ export default function EmpresasPage() {
             Estas empresas ya se sumaron
           </p>
           <div className="partners-marquee">
-            {Array.from({ length: logoRows }).map((_, rowIndex) => (
+            {logoRows.map((rowLogos, rowIndex) => (
               <div key={rowIndex} className="partners-marquee-row">
                 <div className="partners-marquee-inner">
-                  {logos.map((_, i) => (
+                  {rowLogos.map((logoSrc, i) => (
                     <img
-                      key={`row-${rowIndex}-a-${i}`}
-                      alt="Partner Logo"
-                      className="mx-auto h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
-                      src="/ecolink-logo.png"
+                      key={`partner-${rowIndex}-a-${i}`}
+                      alt={`Partner Logo ${i + 1}`}
+                      className="mx-auto h-[calc(2.5rem+2cm)] w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
+                      src={logoSrc}
                     />
                   ))}
-                  {logos.map((_, i) => (
+                  {rowLogos.map((logoSrc, i) => (
                     <img
-                      key={`row-${rowIndex}-b-${i}`}
-                      alt="Partner Logo"
-                      className="mx-auto h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
-                      src="/ecolink-logo.png"
+                      key={`partner-${rowIndex}-b-${i}`}
+                      alt={`Partner Logo ${i + 1}`}
+                      className="mx-auto h-[calc(2.5rem+2cm)] w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
+                      src={logoSrc}
                     />
                   ))}
                 </div>
