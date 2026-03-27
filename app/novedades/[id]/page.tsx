@@ -1,10 +1,33 @@
 import Navbar from '@/app/components/Navbar';
+import { NewsGalleryCarousel } from '@/app/components/NewsGalleryCarousel';
 import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const fetchCache = 'force-no-store';
+
+function normalizeGalleryImages(input: unknown): string[] {
+  if (Array.isArray(input)) {
+    return input.filter((value): value is string => typeof value === 'string' && value.length > 0);
+  }
+
+  if (typeof input === 'string' && input.trim()) {
+    try {
+      const parsed = JSON.parse(input);
+      if (Array.isArray(parsed)) {
+        return parsed.filter((value): value is string => typeof value === 'string' && value.length > 0);
+      }
+    } catch {
+      return input
+        .split(',')
+        .map((value) => value.trim())
+        .filter(Boolean);
+    }
+  }
+
+  return [];
+}
 
 async function getNewsById(id: string) {
   const { data, error } = await supabase
@@ -25,6 +48,7 @@ export default async function NovedadDetallePage({
 }) {
   const item = await getNewsById(params.id);
   if (!item) notFound();
+  const galleryImages = normalizeGalleryImages(item.gallery_images);
 
   const dateText = new Date(item.created_at).toLocaleDateString('es-AR', {
     day: 'numeric',
@@ -69,6 +93,8 @@ export default async function NovedadDetallePage({
                 {item.content}
               </p>
             </div>
+
+            <NewsGalleryCarousel images={galleryImages} />
           </article>
         </section>
       </main>

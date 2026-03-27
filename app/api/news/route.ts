@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const { title, excerpt, content, imageUrl, isPublished } = parsed.data;
+  const { title, excerpt, content, imageUrl, galleryImages, isPublished } = parsed.data;
 
   const { data: created, error } = await supabase
     .from('news')
@@ -61,6 +61,7 @@ export async function POST(request: NextRequest) {
       excerpt,
       content,
       image_url: imageUrl,
+      gallery_images: galleryImages,
       is_published: isPublished,
     })
     .select()

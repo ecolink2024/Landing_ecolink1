@@ -8,6 +8,7 @@ type News = {
   excerpt?: string;
   content: string;
   image_url: string;
+  gallery_images?: string[];
   is_published: boolean;
   created_at: string | Date;
 };
@@ -17,11 +18,20 @@ type FormState = {
   excerpt: string;
   content: string;
   imageUrl: string;
+  galleryImages: string[];
   isPublished: boolean;
 };
 
-const initialForm: FormState = { title: '', excerpt: '', content: '', imageUrl: '', isPublished: true };
+const initialForm: FormState = {
+  title: '',
+  excerpt: '',
+  content: '',
+  imageUrl: '',
+  galleryImages: [],
+  isPublished: true
+};
 const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
+const MAX_GALLERY_IMAGES = 6;
 
 export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   const [items, setItems] = useState(initialNews);
@@ -96,6 +106,76 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
     }
   }
 
+  async function onUploadGallery(files: FileList | null) {
+    if (!files || files.length === 0) return;
+
+    const remainingSlots = MAX_GALLERY_IMAGES - form.galleryImages.length;
+    if (remainingSlots <= 0) {
+      setError('Ya alcanzaste el máximo de 6 imágenes de galería.');
+      return;
+    }
+
+    const selected = Array.from(files).slice(0, remainingSlots);
+    const oversized = selected.find((file) => file.size > MAX_UPLOAD_BYTES);
+    if (oversized) {
+      setError(`"${oversized.name}" supera 4MB. Reducí el tamaño e intentá nuevamente.`);
+      return;
+    }
+
+    setUploading(true);
+    setError('');
+
+    try {
+      const uploadedUrls: string[] = [];
+
+      for (const file of selected) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        let data: any = null;
+        let rawText: string | null = null;
+        try {
+          data = await response.json();
+        } catch {
+          try {
+            rawText = await response.text();
+          } catch {
+            rawText = null;
+          }
+        }
+
+        if (!response.ok) {
+          const fallback = response.status === 413
+            ? 'Una imagen supera 4MB. Reducí el tamaño e intentá nuevamente.'
+            : `No se pudo subir una imagen de galería (HTTP ${response.status}).`;
+          const best = data?.error ?? (rawText ? rawText.slice(0, 160) : null) ?? fallback;
+          throw new Error(best);
+        }
+
+        if (!data?.secureUrl) {
+          throw new Error('La subida respondió OK pero sin URL de imagen.');
+        }
+
+        uploadedUrls.push(data.secureUrl);
+      }
+
+      setForm((prev) => ({
+        ...prev,
+        galleryImages: [...prev.galleryImages, ...uploadedUrls].slice(0, MAX_GALLERY_IMAGES)
+      }));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'No se pudieron subir las imágenes de galería.';
+      setError(message);
+    } finally {
+      setUploading(false);
+    }
+  }
+
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
     setError('');
@@ -136,6 +216,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
       excerpt: item.excerpt ?? '',
       content: item.content,
       imageUrl: item.image_url,
+      galleryImages: item.gallery_images ?? [],
       isPublished: item.is_published
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -235,6 +316,48 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
               {form.imageUrl && (
                 <div className="rounded-lg overflow-hidden h-40 bg-gray-100">
                   <img src={form.imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                </div>
+              )}
+
+              <div>
+                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                  Galería (hasta 6 imágenes)
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={(e) => {
+                    onUploadGallery(e.target.files);
+                    e.currentTarget.value = '';
+                  }}
+                  className="w-full text-sm text-eco-forest file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-eco-forest file:text-white hover:file:bg-eco-green file:cursor-pointer file:transition-colors"
+                />
+                <p className="text-xs text-gray-500 mt-2">
+                  Cargadas: {form.galleryImages.length} / {MAX_GALLERY_IMAGES}
+                </p>
+              </div>
+
+              {form.galleryImages.length > 0 && (
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {form.galleryImages.map((url, index) => (
+                    <div key={`${url}-${index}`} className="relative rounded-lg overflow-hidden h-24 bg-gray-100">
+                      <img src={url} alt={`Galería ${index + 1}`} className="w-full h-full object-cover" />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setForm((prev) => ({
+                            ...prev,
+                            galleryImages: prev.galleryImages.filter((_, i) => i !== index)
+                          }))
+                        }
+                        className="absolute top-1 right-1 w-6 h-6 rounded-full bg-black/70 text-white text-xs font-bold hover:bg-black"
+                        aria-label="Quitar imagen de galería"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
                 </div>
               )}
 

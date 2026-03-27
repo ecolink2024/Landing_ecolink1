@@ -11,6 +11,7 @@ type News = {
   excerpt?: string;
   content: string;
   image_url: string;
+  gallery_images?: string[];
   is_published: boolean;
   created_at: string | Date;
 };
