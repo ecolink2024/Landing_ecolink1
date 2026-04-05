@@ -6,20 +6,20 @@ export default function SomosPage() {
       <Navbar />
       <div className="w-full overflow-x-hidden bg-eco-beige">
         {/* Hero */}
-        <section className="relative h-[560px] flex items-end overflow-hidden">
+        <section className="relative flex min-h-[240px] h-[38svh] sm:h-[min(520px,55svh)] md:h-[560px] items-end overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img
               alt="Equipo EcoLink"
-              className="w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-center"
               src="/equipoSomos.png"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
           </div>
-          <div className="container mx-auto px-6 pb-12 relative z-10">
-            <h1 className="text-white text-3xl md:text-5xl font-extrabold leading-tight max-w-2xl mb-4">
+          <div className="container mx-auto px-4 sm:px-6 pb-8 sm:pb-12 relative z-10 w-full min-w-0">
+            <h1 className="text-white text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight max-w-2xl mb-3 sm:mb-4 text-balance">
               SOMOS ECOLINK
             </h1>
-            <p className="text-white/90 text-sm md:text-lg max-w-2xl font-light leading-relaxed">
+            <p className="text-white/90 text-sm sm:text-base md:text-lg max-w-2xl font-light leading-relaxed">
               Un equipo interdisciplinario comprometido con el cuidado del
               ambiente y la transformación en red.
             </p>
@@ -41,23 +41,23 @@ export default function SomosPage() {
         </section>
 
         {/* Nuestro Equipo */}
-        <section className="bg-eco-beige py-28 px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-center text-3xl md:text-4xl font-extrabold text-eco-forest mb-12">
+        <section className="bg-eco-beige py-16 sm:py-20 md:py-28 px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto w-full min-w-0">
+            <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-extrabold text-eco-forest mb-8 sm:mb-12 px-1 text-balance">
               Nuestro equipo
             </h2>
-            <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 items-center">
               <div className="flex justify-center">
-                <div className="w-80 h-80 rounded-full overflow-hidden shadow-xl bg-gray-200">
+                <div className="w-[min(100%,18rem)] sm:w-[min(100%,20rem)] aspect-square max-w-[280px] mx-auto rounded-full overflow-hidden shadow-xl bg-gray-200">
                   <img
                     alt="Federico Gauna"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                     src="/federicoSomos.jpg"
                   />
                 </div>
               </div>
-              <div className="text-center md:text-left">
-                <p className="text-eco-forest text-xl md:text-2xl font-bold italic leading-snug mb-6">
+              <div className="text-center md:text-left min-w-0">
+                <p className="text-eco-forest text-lg sm:text-xl md:text-2xl font-bold italic leading-snug mb-4 sm:mb-6">
                   &ldquo;Es necesario buscar alternativas, cambiar modelos,
                   rediseñar productos y repensar casi todo lo que entendemos por
                   normal o común.&rdquo;

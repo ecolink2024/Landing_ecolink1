@@ -1,6 +1,5 @@
 import { supabase } from "@/lib/supabase";
 import Navbar from "@/app/components/Navbar";
-import { StatsSection } from "@/app/components/StatsSection";
 import { NewsCarousel } from "@/app/components/NewsCarousel";
 import { ImpactCarousel } from "@/app/components/ImpactCarousel";
 import { BusinessCarousel } from "@/app/components/BusinessCarousel";
@@ -58,9 +57,6 @@ export default async function Home() {
             </p>
           </div>
         </section>
-
-        {/* Impact Stats */}
-        <StatsSection />
 
         {/* Process */}
         <section className="bg-eco-beige py-16 md:py-24 px-4 sm:px-6">

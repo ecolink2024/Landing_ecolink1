@@ -133,15 +133,15 @@ export default function EmpresasPage() {
       </section>
 
       {/* Partners Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto text-center max-w-5xl">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white overflow-x-hidden">
+        <div className="container mx-auto text-center max-w-5xl w-full min-w-0">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 mb-2 text-balance px-1">
             Recuperar y Transformar los Residuos
           </h2>
-          <h3 className="text-3xl md:text-4xl font-extrabold text-eco-green mb-10">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-eco-green mb-6 sm:mb-10 text-balance px-1">
             empieza con una decisión
           </h3>
-          <p className="text-gray-500 font-semibold text-lg mb-12">
+          <p className="text-gray-500 font-semibold text-base sm:text-lg mb-8 sm:mb-12">
             Estas empresas ya se sumaron
           </p>
           <div className="partners-marquee">
@@ -152,7 +152,7 @@ export default function EmpresasPage() {
                     <img
                       key={`partner-${rowIndex}-a-${i}`}
                       alt={`Partner Logo ${i + 1}`}
-                      className="mx-auto h-[calc(2.5rem+2cm)] w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
+                      className="h-10 w-auto sm:h-12 md:h-16 lg:h-[calc(2.25rem+1.75cm)] object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
                       src={logoSrc}
                     />
                   ))}
@@ -160,7 +160,7 @@ export default function EmpresasPage() {
                     <img
                       key={`partner-${rowIndex}-b-${i}`}
                       alt={`Partner Logo ${i + 1}`}
-                      className="mx-auto h-[calc(2.5rem+2cm)] w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
+                      className="h-10 w-auto sm:h-12 md:h-16 lg:h-[calc(2.25rem+1.75cm)] object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
                       src={logoSrc}
                     />
                   ))}
