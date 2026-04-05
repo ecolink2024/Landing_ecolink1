@@ -46,8 +46,9 @@ export default async function Home() {
             src="/homeNewVideo.mov"
           />
           <div className="relative z-20 px-4 sm:px-6 max-w-4xl">
-            <h2 className="text-xl sm:text-2xl md:text-4xl font-bold tracking-widest mb-10 md:mb-16">
-              SOMOS ECOLINK
+            <h2 className="text-[calc(1.25rem+1cm)] sm:text-[calc(1.5rem+1cm)] md:text-[calc(2.25rem+1cm)] font-bold tracking-widest mb-10 md:mb-16">
+              SOMOS{" "}
+              <span className="italic">ECOLINK</span>
             </h2>
             <h1 className="text-lg sm:text-xl md:text-3xl font-extrabold mb-6 leading-snug">
               CONECTAMOS - GESTIONAMOS - TRANSFORMAMOS
@@ -74,7 +75,7 @@ export default async function Home() {
             </p>
             <img
               alt="Proceso EcoLINK: Separación en origen, Trasladamos los materiales, Cooperativas de reciclaje"
-              className="w-full max-w-3xl mx-auto object-contain rounded-lg shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)]"
+              className="w-full max-w-3xl mx-auto object-contain shadow-none [filter:none]"
               src="/proceso-ecolink.svg"
             />
           </div>
@@ -94,8 +95,9 @@ export default async function Home() {
           }}
         >
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-eco-beige text-3xl md:text-4xl font-bold mb-12 text-center md:text-left">
-              Cuando nos movemos, pasan cosas
+            <h2 className="text-eco-beige text-xl sm:text-2xl md:text-4xl font-bold tracking-widest mb-12 text-center md:text-left">
+              Cuando nos movemos,{" "}
+              <span className="italic">pasan cosas</span>
             </h2>
 
             {news.length > 0 ? (

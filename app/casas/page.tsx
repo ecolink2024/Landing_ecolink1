@@ -28,7 +28,7 @@ export default function CasasPage() {
             </h1>
             <p className="text-white/90 text-sm md:text-lg max-w-2xl font-light leading-relaxed">
               Nuestro servicio de recolección abarca: Córdoba Capital y
-              alrededores y llegamos hasta Sierras Chicas
+              alrededores, incluidas localidades de las Sierras Chicas
             </p>
           </div>
         </section>
@@ -95,15 +95,17 @@ export default function CasasPage() {
             </div>
 
             <h3 className="text-eco-forest text-3xl md:text-4xl font-extrabold mb-6">
-              ¡No hay excusas para no empezar!
+              ¡No hay excusas, sumarte es muy simple!
             </h3>
             <p className="text-eco-forest/70 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
-              Nuestros cestos y bolsas tienen un porqué:
-              <br />
-              Creemos que cuando las personas observan sus residuos, aparecen
-              nuevas formas de conciencia de consumo, ahí es cuando se da la
-              posibilidad de cambios genuinos, así buscamos construir una
-              sociedad más sustentable y sostenible.
+              Nuestros cestos y bolsas nacen de una idea simple pero poderosa:
+              todo cambio empieza por la acción de “ver”. Cuando nos detenemos a
+              observar nuestros residuos, algo se transforma, aparece una nueva
+              conciencia sobre cómo consumimos y el impacto que generamos. En
+              ese sentido, se abre la puerta a la toma de decisiones más
+              responsables. Así, paso a paso, buscamos inspirar una forma de
+              hábitos más conscientes y construir juntos/as una sociedad más
+              sustentable.
             </p>
           </div>
         </section>

@@ -74,7 +74,7 @@ export default function EmpresasPage() {
             Empresas
           </p>
           <h1 className="text-white text-3xl md:text-5xl font-extrabold leading-tight max-w-2xl mb-4">
-            Locales comerciales, PyMes, instituciones
+            Locales comerciales, empresas e instituciones
           </h1>
           <p className="text-white/90 text-sm md:text-lg max-w-2xl font-light leading-relaxed">
             Nuestros servicios están pensados para quienes quieran iniciar un

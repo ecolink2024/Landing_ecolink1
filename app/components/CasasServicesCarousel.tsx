@@ -37,12 +37,10 @@ export function CasasServicesCarousel() {
                 de Residuos Reciclables
               </span>
             </h2>
-            <p className="text-white/80 text-sm leading-relaxed mb-2">
-              ✔ Kit de reciclaje, bolsas especiales para mantener tu espacio
-              limpio y ordenado.
-            </p>
             <p className="text-white/80 text-sm leading-relaxed mb-8">
-              Recolección de 1 a 4 veces por mes.
+              Incluye nuestro Kit de reciclaje: Cesto EcoLink + bolsas EcoLink
+              para mantener tus residuos reciclables ordenados hasta el
+              siguiente retiro
             </p>
             <a
               className="inline-block bg-eco-pink text-white px-8 py-3 rounded-full text-xs font-extrabold uppercase tracking-widest leading-none shadow-lg hover:scale-105 transition-transform"
