@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useMemo, useState } from 'react';
+import { formatNewsDateForDisplay, isoDateFromCreated, todayIsoLocal } from '@/lib/news-date';
 
 type News = {
   id: number | string;
@@ -11,6 +12,7 @@ type News = {
   gallery_images?: string[];
   is_published: boolean;
   created_at: string | Date;
+  published_at?: string | null;
 };
 
 type FormState = {
@@ -20,22 +22,27 @@ type FormState = {
   imageUrl: string;
   galleryImages: string[];
   isPublished: boolean;
+  /** YYYY-MM-DD — fecha que se muestra en Novedades */
+  publishedAt: string;
 };
 
-const initialForm: FormState = {
-  title: '',
-  excerpt: '',
-  content: '',
-  imageUrl: '',
-  galleryImages: [],
-  isPublished: true
-};
+function createInitialForm(): FormState {
+  return {
+    title: '',
+    excerpt: '',
+    content: '',
+    imageUrl: '',
+    galleryImages: [],
+    isPublished: true,
+    publishedAt: todayIsoLocal(),
+  };
+}
 const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
 const MAX_GALLERY_IMAGES = 6;
 
 export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   const [items, setItems] = useState(initialNews);
-  const [form, setForm] = useState<FormState>(initialForm);
+  const [form, setForm] = useState<FormState>(() => createInitialForm());
   const [editingId, setEditingId] = useState<string | number | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -190,10 +197,20 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
     const endpoint = editingId ? `/api/news/${editingId}` : '/api/news';
     const method = editingId ? 'PUT' : 'POST';
 
+    const payload = {
+      title: form.title,
+      excerpt: form.excerpt,
+      content: form.content,
+      imageUrl: form.imageUrl,
+      galleryImages: form.galleryImages,
+      isPublished: form.isPublished,
+      publishedAt: form.publishedAt,
+    };
+
     const response = await fetch(endpoint, {
       method,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form)
+      body: JSON.stringify(payload),
     });
 
     setLoading(false);
@@ -204,7 +221,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
       return;
     }
 
-    setForm(initialForm);
+    setForm(createInitialForm());
     setEditingId(null);
     await refreshNews();
   }
@@ -217,7 +234,8 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
       content: item.content,
       imageUrl: item.image_url,
       galleryImages: item.gallery_images ?? [],
-      isPublished: item.is_published
+      isPublished: item.is_published,
+      publishedAt: item.published_at ?? isoDateFromCreated(item.created_at),
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -272,6 +290,21 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
                   placeholder="Título de la noticia"
                   className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors"
                 />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                  Fecha de la noticia
+                </label>
+                <input
+                  type="date"
+                  value={form.publishedAt}
+                  onChange={(e) => setForm((p) => ({ ...p, publishedAt: e.target.value }))}
+                  className="w-full max-w-xs border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Por defecto es hoy; podés cambiarla. Es la fecha que se muestra en Novedades.
+                </p>
               </div>
 
               <div>
@@ -385,7 +418,10 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
                 </button>
                 <button
                   type="button"
-                  onClick={() => { setForm(initialForm); setEditingId(null); }}
+                  onClick={() => {
+                    setForm(createInitialForm());
+                    setEditingId(null);
+                  }}
                   className="px-6 bg-gray-100 text-eco-forest font-bold py-3 rounded-full uppercase tracking-wider text-sm hover:bg-gray-200 transition-colors"
                 >
                   Limpiar
@@ -419,7 +455,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
                   <div>
                     <h3 className="text-eco-forest font-bold text-sm leading-snug mb-1 line-clamp-2">{item.title}</h3>
                     <p className="text-gray-400 text-xs">
-                      {new Date(item.created_at).toLocaleDateString('es-AR')}
+                      {formatNewsDateForDisplay(item)}
                       {' · '}
                       <span className={item.is_published ? 'text-eco-green font-semibold' : 'text-eco-pink font-semibold'}>
                         {item.is_published ? 'Publicada' : 'Borrador'}

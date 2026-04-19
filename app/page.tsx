@@ -16,7 +16,7 @@ async function getNews() {
       .from("news")
       .select("*")
       .eq("is_published", true)
-      .order("created_at", { ascending: false })
+      .order("published_at", { ascending: false, nullsFirst: false })
       .limit(PAGE_SIZE);
     if (error) throw error;
     return data ?? [];

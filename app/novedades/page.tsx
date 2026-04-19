@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import Navbar from '@/app/components/Navbar';
+import { formatNewsDateForDisplay } from '@/lib/news-date';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -17,7 +18,7 @@ async function getNews(page: number) {
       .from('news')
       .select('*', { count: 'exact' })
       .eq('is_published', true)
-      .order('created_at', { ascending: false })
+      .order('published_at', { ascending: false, nullsFirst: false })
       .range(from, to);
 
     if (error) throw error;
@@ -71,7 +72,7 @@ export default async function NovedadesPage({
                   />
                   <div className="p-6 flex flex-col flex-grow">
                     <p className="text-eco-green text-xs font-bold uppercase tracking-widest mb-2">
-                      {new Date(item.created_at).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                      {formatNewsDateForDisplay(item)}
                     </p>
                     <h2 className="text-eco-forest font-extrabold text-lg leading-snug mb-3">{item.title}</h2>
                     <p className="text-eco-forest/70 text-sm leading-relaxed line-clamp-3 flex-grow">{item.excerpt ?? item.content}</p>

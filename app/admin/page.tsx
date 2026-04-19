@@ -14,6 +14,7 @@ type News = {
   gallery_images?: string[];
   is_published: boolean;
   created_at: string | Date;
+  published_at?: string | null;
 };
 
 export default async function AdminPage() {
@@ -22,7 +23,7 @@ export default async function AdminPage() {
     const { data, error } = await supabase
       .from('news')
       .select('*')
-      .order('created_at', { ascending: false });
+      .order('published_at', { ascending: false, nullsFirst: false });
     if (!error && data) news = data as News[];
   } catch {}
 

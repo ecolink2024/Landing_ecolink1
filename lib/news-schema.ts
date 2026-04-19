@@ -10,5 +10,9 @@ export const newsSchema = z.object({
   content: z.string().trim().min(10, 'El contenido debe tener al menos 10 caracteres.'),
   imageUrl: z.string().url('La imagen debe ser una URL válida.'),
   galleryImages: z.array(z.string().url('Las imágenes de galería deben ser URLs válidas.')).max(6).optional().default([]),
-  isPublished: z.boolean().optional().default(true)
+  isPublished: z.boolean().optional().default(true),
+  /** Fecha mostrada en novedades (YYYY-MM-DD) */
+  publishedAt: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'La fecha debe tener formato AAAA-MM-DD.'),
 });

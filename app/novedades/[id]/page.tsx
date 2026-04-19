@@ -1,6 +1,7 @@
 import Navbar from '@/app/components/Navbar';
 import { NewsGalleryCarousel } from '@/app/components/NewsGalleryCarousel';
 import { supabase } from '@/lib/supabase';
+import { formatNewsDateForDisplay } from '@/lib/news-date';
 import { notFound } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
@@ -50,11 +51,7 @@ export default async function NovedadDetallePage({
   if (!item) notFound();
   const galleryImages = normalizeGalleryImages(item.gallery_images);
 
-  const dateText = new Date(item.created_at).toLocaleDateString('es-AR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
+  const dateText = formatNewsDateForDisplay(item);
 
   return (
     <div className="bg-eco-beige text-eco-text-dark">

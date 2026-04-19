@@ -15,7 +15,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const { title, excerpt, content, imageUrl, galleryImages, isPublished } = parsed.data;
+  const { title, excerpt, content, imageUrl, galleryImages, isPublished, publishedAt } = parsed.data;
 
   const { data: updated, error } = await supabase
     .from('news')
@@ -26,6 +26,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       image_url: imageUrl,
       gallery_images: galleryImages,
       is_published: isPublished,
+      published_at: publishedAt,
       updated_at: new Date().toISOString(),
     })
     .eq('id', params.id)

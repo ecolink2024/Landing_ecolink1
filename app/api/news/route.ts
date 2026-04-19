@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     query = query.eq('is_published', true);
   }
   const { data: items, error, count } = await query
-    .order('created_at', { ascending: false })
+    .order('published_at', { ascending: false, nullsFirst: false })
     .range(from, to);
 
   if (error) {
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const { title, excerpt, content, imageUrl, galleryImages, isPublished } = parsed.data;
+  const { title, excerpt, content, imageUrl, galleryImages, isPublished, publishedAt } = parsed.data;
 
   const { data: created, error } = await supabase
     .from('news')
@@ -63,6 +63,7 @@ export async function POST(request: NextRequest) {
       image_url: imageUrl,
       gallery_images: galleryImages,
       is_published: isPublished,
+      published_at: publishedAt,
     })
     .select()
     .single();
