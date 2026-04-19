@@ -15,6 +15,56 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+/* Marquee de logos — empresas */
+.partners-marquee {
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.25rem + 1cm);
+  width: 100%;
+  max-width: 100%;
+}
+
+.partners-marquee-row {
+  overflow: hidden;
+  width: 100%;
+  /* Franja central nítida ~44vw (~5 logos con tamaño/gap actuales); el fade empieza antes */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black calc(50% - 22vw),
+    black calc(50% + 22vw),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black calc(50% - 22vw),
+    black calc(50% + 22vw),
+    transparent
+  );
+}
+
+.partners-marquee-inner {
+  display: flex;
+  width: max-content;
+  gap: 2.5rem;
+  align-items: center;
+  animation: partners-marquee 41s linear infinite;
+}
+
+.partners-marquee-inner:hover {
+  animation-play-state: paused;
+}
+
+@keyframes partners-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 /* Admin styles */
 .btn-primary {
   background: #1f5130;
@@ -101,78 +151,4 @@ label {
   display: block;
   margin-bottom: 12px;
   color: #222;
-}
-
-/* Marquee de logos empresas */
-.partners-marquee {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  width: 100%;
-  max-width: 100%;
-}
-
-@media (min-width: 640px) {
-  .partners-marquee {
-    gap: 2rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .partners-marquee {
-    gap: 2.5rem;
-  }
-}
-
-.partners-marquee-row {
-  overflow: hidden;
-  width: 100%;
-  margin-inline: 0;
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent,
-    #000 6%,
-    #000 94%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent,
-    #000 6%,
-    #000 94%,
-    transparent
-  );
-}
-
-.partners-marquee-inner {
-  display: flex;
-  width: max-content;
-  gap: 1rem;
-  align-items: center;
-  animation: partners-marquee 31s linear infinite;
-}
-
-@media (min-width: 640px) {
-  .partners-marquee-inner {
-    gap: 1.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .partners-marquee-inner {
-    gap: 2.5rem;
-  }
-}
-
-.partners-marquee-inner img {
-  flex-shrink: 0;
-}
-
-@keyframes partners-marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
 }

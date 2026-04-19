@@ -16,24 +16,45 @@ export default function SomosPage() {
             <h1 className="text-white text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight max-w-2xl mb-3 sm:mb-4 text-balance">
               SOMOS ECOLINK
             </h1>
-            <p className="text-white/90 text-sm sm:text-base md:text-lg max-w-2xl font-light leading-relaxed">
-              Un equipo interdisciplinario comprometido con el cuidado del
-              ambiente y la transformación en red.
+            <p className="text-white/90 text-sm sm:text-base md:text-lg max-w-3xl font-light leading-relaxed text-balance">
+              No somos solo una empresa: somos una red de profesionales que
+              trabajan para generar impacto en la comunidad.
             </p>
           </div>
         </section>
 
         {/* Description */}
         <section className="bg-eco-green py-20 px-6">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-white text-lg md:text-xl leading-relaxed">
-              Trabajamos con hogares, comercios, espacios gastronómicos,
-              empresas e instituciones que buscan reducir su impacto ambiental y
-              generar un cambio real. Acompañamos a cada cliente con soluciones
-              simples, eficientes y adaptadas a su realidad, integrando la
-              gestión de residuos reciclables y orgánicos como parte de su día a
-              día.
+          <div className="mx-auto max-w-4xl space-y-8 text-white text-lg leading-relaxed md:space-y-10 md:text-xl">
+            <p className="text-left -translate-x-[3cm]">
+              Trabajo en equipo, compromiso, aprendizaje y acción.
+              <br />
+              Cada familia y empresa, cada cliente que nos elige desde hace 8
+              años.
+              <br />
+              Cada cooperativa aliada.
+              <br />
+              Cada persona que decide involucrarse, aportar su tiempo, sus ideas
+              y su energía para que este proyecto crezca y genere
+              transformaciones reales.
             </p>
+            <div className="ms-auto max-w-3xl translate-x-[3cm] text-right">
+              <p>
+                Una empresa cordobesa que nació en el 2017, con inquietudes y la
+                intención clara de transformar la forma en que vemos y
+                gestionamos los residuos, poniendo el foco en aquello que muchas
+                veces queda fuera de la mirada. Pero, sobre todo, nacimos para
+                impulsar un cambio cultural sobre cómo nos vinculamos con lo que
+                consumimos y lo que generamos.
+              </p>
+            </div>
+            <div className="mx-auto max-w-3xl text-center">
+              <p>
+                Buscamos cooperar y no competir, porque entendemos que los
+                cambios no se logran individualmente, sino de manera colectiva.
+                NADIE RECICLA SOLO/A.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -67,6 +88,49 @@ export default function SomosPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Visión, misión y valores */}
+        <section className="border-t border-black/10 bg-white py-16 sm:py-20 md:py-24 px-4 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-black">
+              <div className="min-w-0 md:pr-6 lg:pr-10">
+                <h3 className="mb-4 text-lg font-bold tracking-[0.2em] text-eco-forest md:text-xl">
+                  VISIÓN
+                </h3>
+                <p className="text-base leading-relaxed text-gray-800 md:text-lg">
+                  Liderar la transformación individual y colectiva para una
+                  comunidad más sustentable, consciente y socialmente
+                  comprometida.
+                </p>
+              </div>
+              <div className="min-w-0 border-t border-black pt-10 md:border-t-0 md:px-6 md:pt-0 lg:px-10">
+                <h3 className="mb-4 text-lg font-bold tracking-[0.2em] text-eco-forest md:text-xl">
+                  MISIÓN
+                </h3>
+                <p className="text-base leading-relaxed text-gray-800 md:text-lg">
+                  Brindar servicios de Gestión Consciente de los residuos
+                  recuperables en hogares y empresas, educación ambiental y
+                  asesoramiento profesional.
+                </p>
+              </div>
+              <div className="min-w-0 border-t border-black pt-10 md:border-t-0 md:pl-6 md:pt-0 lg:pl-10">
+                <h3 className="mb-4 text-lg font-bold tracking-[0.2em] text-eco-forest md:text-xl">
+                  VALORES
+                </h3>
+                <ul className="space-y-2.5 text-base leading-relaxed text-gray-800 md:text-lg">
+                  <li>➝Impacto social</li>
+                  <li>➝Responsabilidad ambiental</li>
+                  <li>➝Conciencia activa</li>
+                  <li>➝Compromiso colectivo</li>
+                  <li>➝Gestión basada en datos</li>
+                </ul>
+              </div>
+            </div>
+            <p className="mx-auto mt-12 max-w-3xl text-center text-base font-bold leading-relaxed text-eco-forest md:mt-16 md:text-lg">
+              Gracias por llegar hasta acá, vos también podes ser parte.
+            </p>
           </div>
         </section>
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
+import { PARTNER_LOGO_ROWS } from "@/lib/partner-logos";
 
 export default function EmpresasPage() {
   const [serviceSlide, setServiceSlide] = useState(0);
@@ -35,14 +36,6 @@ export default function EmpresasPage() {
       imageSrc: "/AccionesRespSocialEmpresarial.jpeg",
     },
   ];
-
-  const allPartnerLogos = Array.from({ length: 46 }, (_, index) => {
-    const n = String(index + 1).padStart(2, "0");
-    return `/Logos/LOGOS_EDG-${n}.jpg`;
-  });
-  const logoRows = [0, 1, 2].map((rowIndex) =>
-    allPartnerLogos.filter((_, logoIndex) => logoIndex % 3 === rowIndex),
-  );
 
   useEffect(() => {
     if (serviceSlides.length <= 1) return;
@@ -133,41 +126,47 @@ export default function EmpresasPage() {
       </section>
 
       {/* Partners Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white overflow-x-hidden">
-        <div className="container mx-auto text-center max-w-5xl w-full min-w-0">
+      <section className="py-12 sm:py-16 md:py-20 px-0 sm:px-6 bg-white overflow-x-hidden">
+        <div className="container mx-auto text-center max-w-5xl w-full min-w-0 px-4 sm:px-0">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 mb-2 text-balance px-1">
             Recuperar y Transformar los Residuos
           </h2>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-eco-green mb-6 sm:mb-10 text-balance px-1">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-eco-green text-balance px-1 mb-4">
             empieza con una decisión
           </h3>
-          <p className="text-gray-500 font-semibold text-base sm:text-lg mb-8 sm:mb-12">
+          <p className="text-gray-500 text-sm sm:text-base font-bold mb-10 md:mb-12">
             Estas empresas ya se sumaron
           </p>
-          <div className="partners-marquee">
-            {logoRows.map((rowLogos, rowIndex) => (
+        </div>
+        <div
+          className="partners-marquee w-full"
+          aria-hidden="true"
+          role="presentation"
+        >
+          {PARTNER_LOGO_ROWS.map((row, rowIndex) => {
+            const doubled = [...row, ...row];
+            return (
               <div key={rowIndex} className="partners-marquee-row">
-                <div className="partners-marquee-inner">
-                  {rowLogos.map((logoSrc, i) => (
+                <div
+                  className="partners-marquee-inner"
+                  style={{
+                    animationDuration: `${38 + rowIndex * 4}s`,
+                  }}
+                >
+                  {doubled.map((logo, i) => (
                     <img
-                      key={`partner-${rowIndex}-a-${i}`}
-                      alt={`Partner Logo ${i + 1}`}
-                      className="h-10 w-auto sm:h-12 md:h-16 lg:h-[calc(2.25rem+1.75cm)] object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
-                      src={logoSrc}
-                    />
-                  ))}
-                  {rowLogos.map((logoSrc, i) => (
-                    <img
-                      key={`partner-${rowIndex}-b-${i}`}
-                      alt={`Partner Logo ${i + 1}`}
-                      className="h-10 w-auto sm:h-12 md:h-16 lg:h-[calc(2.25rem+1.75cm)] object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
-                      src={logoSrc}
+                      key={`${rowIndex}-${i}-${logo.src}`}
+                      src={logo.src}
+                      alt=""
+                      className="h-[calc(2.5rem+1cm)] sm:h-[calc(3rem+1cm)] md:h-[calc(3.5rem+1cm)] w-auto max-w-[calc(140px+1cm)] sm:max-w-[calc(160px+1cm)] object-contain shrink-0 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-[filter,opacity] duration-300"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </section>
 

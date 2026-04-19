@@ -21,7 +21,7 @@ const HERO_SLIDES = [
   },
 ] as const;
 
-const INTERVAL_MS = 5000;
+const INTERVAL_MS = 2000;
 
 export function SomosHeroCarousel() {
   const [slide, setSlide] = useState(0);
