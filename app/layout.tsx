@@ -5,6 +5,11 @@ import { WhatsAppWidget } from "@/app/components/WhatsAppWidget";
 export const metadata: Metadata = {
   title: "EcoLink",
   description: "Comunidad sustentable con noticias y acciones de impacto.",
+  icons: {
+    icon: [{ url: "/Favicon/favicon.png", type: "image/png" }],
+    apple: "/Favicon/favicon.png",
+    shortcut: "/Favicon/favicon.png",
+  },
 };
 
 export default function RootLayout({

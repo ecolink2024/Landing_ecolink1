@@ -1,4 +1,5 @@
 import Navbar from "@/app/components/Navbar";
+import { SomosHeroCarousel } from "@/app/components/SomosHeroCarousel";
 
 export default function SomosPage() {
   return (
@@ -8,12 +9,8 @@ export default function SomosPage() {
         {/* Hero */}
         <section className="relative flex min-h-[240px] h-[38svh] sm:h-[min(520px,55svh)] md:h-[560px] items-end overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img
-              alt="Equipo EcoLink"
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              src="/equipoSomos.png"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+            <SomosHeroCarousel />
+            <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           </div>
           <div className="container mx-auto px-4 sm:px-6 pb-8 sm:pb-12 relative z-10 w-full min-w-0">
             <h1 className="text-white text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight max-w-2xl mb-3 sm:mb-4 text-balance">
