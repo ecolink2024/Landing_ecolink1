@@ -29,14 +29,13 @@ export default function SomosPage() {
             <p className="text-left -translate-x-[3cm]">
               Trabajo en equipo, compromiso, aprendizaje y acción.
               <br />
-              Cada familia y empresa, cada cliente que nos elige desde hace 8
-              años.
+              Cada familia y empresa, cada cliente que nos elige desde hace 8 años.
               <br />
               Cada cooperativa aliada.
               <br />
-              Cada persona que decide involucrarse, aportar su tiempo, sus ideas
-              y su energía para que este proyecto crezca y genere
-              transformaciones reales.
+              Cada persona que decide involucrarse, aportar su tiempo, sus ideas y
+              su energía para que este proyecto crezca y genere transformaciones
+              reales.
             </p>
             <div className="ms-auto max-w-3xl translate-x-[3cm] text-right">
               <p>
