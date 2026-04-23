@@ -1,6 +1,13 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 export function WhatsAppWidget() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/recursos/p/")) {
+    return null;
+  }
+
   return (
     <a
       href="https://wa.link/p60j9m"

@@ -27,15 +27,16 @@ export default function SomosPage() {
         <section className="bg-eco-green py-20 px-6">
           <div className="mx-auto max-w-4xl space-y-8 text-white text-lg leading-relaxed md:space-y-10 md:text-xl">
             <p className="text-left -translate-x-[3cm]">
-              Trabajo en equipo, compromiso, aprendizaje y acción.
+              Somos trabajo en equipo, compromiso, aprendizaje y acción.
               <br />
-              Cada familia y empresa, cada cliente que nos elige desde hace 8 años.
+              Somos cada familia y empresa, cada cliente que nos elige desde hace
+              8 años.
               <br />
-              Cada cooperativa aliada.
+              Somos cada cooperativa aliada.
               <br />
-              Cada persona que decide involucrarse, aportar su tiempo, sus ideas y
-              su energía para que este proyecto crezca y genere transformaciones
-              reales.
+              Somos cada persona que decide involucrarse, aportar su tiempo, sus
+              ideas y su energía Somos para que este proyecto crezca y genere
+              transformaciones reales.
             </p>
             <div className="ms-auto max-w-3xl translate-x-[3cm] text-right">
               <p>
