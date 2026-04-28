@@ -77,7 +77,7 @@ export function ImpactCarousel() {
           <h2 className="max-w-lg shrink-0 text-center text-2xl font-bold leading-tight text-white md:text-left md:text-4xl">
             {activeSlide.heading}
           </h2>
-          <div className="flex aspect-square w-[min(17.5rem,calc(100vw-2.5rem))] shrink-0 flex-col items-center justify-center rounded-full bg-eco-beige/95 p-4 text-center shadow-xl backdrop-blur sm:p-6 md:w-72 md:p-7">
+          <div className="flex aspect-square w-[min(17.5rem,calc(100%-2rem))] shrink-0 flex-col items-center justify-center rounded-full bg-eco-beige/95 p-4 text-center shadow-xl backdrop-blur sm:p-6 md:w-72 md:p-7">
             <div className="px-1 text-xl font-extrabold leading-tight text-eco-green sm:text-3xl md:text-4xl">
               {activeSlide.value}
             </div>

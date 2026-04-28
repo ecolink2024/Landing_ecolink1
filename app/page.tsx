@@ -29,10 +29,10 @@ export default async function Home() {
   const news = await getNews();
 
   return (
-    <div className="bg-eco-beige text-eco-text-dark">
+    <div className="bg-eco-beige text-eco-text-dark min-w-0 overflow-x-clip">
       <Navbar />
 
-      <main>
+      <main className="min-w-0">
         {/* Hero - se extiende detrás del navbar para fondo transparente */}
         <section className="relative min-h-screen flex items-center justify-center text-center text-white overflow-hidden">
           <div className="absolute inset-0 bg-black/40 z-10"></div>

@@ -26,7 +26,7 @@ export default function SomosPage() {
         {/* Description */}
         <section className="bg-eco-green py-20 px-6">
           <div className="mx-auto max-w-4xl space-y-8 text-white text-lg leading-relaxed md:space-y-10 md:text-xl">
-            <p className="text-left -translate-x-[3cm]">
+            <p className="text-left md:-translate-x-[3cm]">
               Somos trabajo en equipo, compromiso, aprendizaje y acción.
               <br />
               Somos cada familia y empresa, cada cliente que nos elige desde hace
@@ -38,7 +38,7 @@ export default function SomosPage() {
               ideas y su energía Somos para que este proyecto crezca y genere
               transformaciones reales.
             </p>
-            <div className="ms-auto max-w-3xl translate-x-[3cm] text-right">
+            <div className="ms-auto max-w-3xl md:translate-x-[3cm] text-right">
               <p>
                 Una empresa cordobesa que nació en el 2017, con inquietudes y la
                 intención clara de transformar la forma en que vemos y

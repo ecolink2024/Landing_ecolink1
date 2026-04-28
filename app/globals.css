@@ -11,8 +11,13 @@
   --font-family-sans: "Inter", sans-serif;
 }
 
+html {
+  overflow-x: clip;
+}
+
 body {
   font-family: "Inter", sans-serif;
+  overflow-x: clip;
 }
 
 /* Marquee de logos — empresas */

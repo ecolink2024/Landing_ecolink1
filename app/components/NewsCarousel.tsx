@@ -42,13 +42,15 @@ export function NewsCarousel({ items }: Props) {
   }
 
   return (
-    <div className="relative">
-      <div className="flex gap-8 justify-center">
+    <div className="relative min-w-0">
+      {/* En mobile 3×300px + gaps ensanchaba todo el documento; el scroll queda acá */}
+      <div className="-mx-4 px-4 md:mx-0 md:px-0 overflow-x-auto overscroll-x-contain pb-1 md:overflow-visible touch-pan-x md:touch-auto">
+        <div className="flex gap-6 md:gap-8 justify-start md:justify-center w-max max-w-none mx-auto md:w-full md:max-w-full">
         {visibleItems.map((item) => (
           <Link
             key={item.id}
             href={`/novedades/${item.id}`}
-            className="group bg-eco-light-green/20 hover:bg-[#FDFCF8] rounded-lg overflow-hidden flex flex-col flex-shrink-0 w-[300px] md:w-[380px] transition-colors duration-300"
+            className="group bg-eco-light-green/20 hover:bg-[#FDFCF8] rounded-lg overflow-hidden flex flex-col flex-shrink-0 w-[280px] sm:w-[300px] md:w-[380px] transition-colors duration-300"
           >
             <img
               alt={item.title}
@@ -65,6 +67,7 @@ export function NewsCarousel({ items }: Props) {
             </div>
           </Link>
         ))}
+        </div>
       </div>
 
       {/* Controles */}
