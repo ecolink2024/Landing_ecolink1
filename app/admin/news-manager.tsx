@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useMemo, useRef, useState } from 'react';
 import { formatNewsDateForDisplay, isoDateFromCreated, todayIsoLocal } from '@/lib/news-date';
 
 type News = {
@@ -94,6 +94,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const contentRef = useRef<HTMLTextAreaElement | null>(null);
 
   const orderedItems = useMemo(() => items, [items]);
 
@@ -322,6 +323,26 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
     window.location.href = '/admin/login';
   }
 
+  function wrapContentSelection(prefix: string, suffix: string = prefix) {
+    const textarea = contentRef.current;
+    if (!textarea) return;
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const value = form.content;
+    const selected = value.slice(start, end) || 'texto';
+    const next = `${value.slice(0, start)}${prefix}${selected}${suffix}${value.slice(end)}`;
+
+    setForm((prev) => ({ ...prev, content: next }));
+
+    requestAnimationFrame(() => {
+      textarea.focus();
+      const cursorStart = start + prefix.length;
+      const cursorEnd = cursorStart + selected.length;
+      textarea.setSelectionRange(cursorStart, cursorEnd);
+    });
+  }
+
   return (
     <div className="min-h-screen bg-eco-beige">
       {/* Header */}
@@ -384,8 +405,18 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Contenido</label>
+                <div className="flex items-center justify-between gap-3 mb-1">
+                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest">Contenido</label>
+                  <button
+                    type="button"
+                    onClick={() => wrapContentSelection('**')}
+                    className="px-3 py-1 rounded-full bg-eco-forest text-white text-[11px] font-bold uppercase tracking-wider hover:bg-eco-green transition-colors"
+                  >
+                    Negrita
+                  </button>
+                </div>
                 <textarea
+                  ref={contentRef}
                   rows={6}
                   value={form.content}
                   onChange={(e) => setForm((p) => ({ ...p, content: e.target.value }))}
@@ -393,6 +424,9 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
                   placeholder="Escribí el contenido de la noticia..."
                   className="w-full border border-gray-200 rounded-md px-4 py-3 text-eco-forest focus:outline-none focus:border-eco-green transition-colors resize-none"
                 />
+                <p className="text-xs text-gray-500 mt-1">
+                  Seleccioná texto y tocá Negrita, o escribí <code className="font-mono">**así**</code> para resaltar.
+                </p>
               </div>
 
               <div>

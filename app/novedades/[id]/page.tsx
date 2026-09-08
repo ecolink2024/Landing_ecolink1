@@ -1,5 +1,6 @@
 import Navbar from '@/app/components/Navbar';
 import { NewsGalleryCarousel } from '@/app/components/NewsGalleryCarousel';
+import { RichText } from '@/lib/rich-text';
 import { supabase } from '@/lib/supabase';
 import { formatNewsDateForDisplay } from '@/lib/news-date';
 import { notFound } from 'next/navigation';
@@ -85,10 +86,11 @@ export default async function NovedadDetallePage({
               {item.excerpt ?? ''}
             </p>
 
-            <div className="mt-8 prose prose-slate max-w-none">
-              <p className="text-eco-forest/80 leading-relaxed whitespace-pre-wrap">
-                {item.content}
-              </p>
+            <div className="mt-8">
+              <RichText
+                text={item.content ?? ''}
+                className="text-eco-forest/80 leading-relaxed"
+              />
             </div>
 
             <NewsGalleryCarousel images={galleryImages} />
