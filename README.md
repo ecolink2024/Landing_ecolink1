@@ -1,39 +1,27 @@
 # EcoLink
 
-Aplicación Next.js con panel administrador para gestionar noticias.
+Sitio / landing de EcoLink (Next.js) con panel de noticias, leads a Google Sheets y presentaciones embebidas.
 
-## Requisitos
+## Documentación
 
-- Node.js 18+
-- PlanetScale (MySQL)
-- Cloudinary
+- **Desarrollo (técnico):** [docs/DESARROLLO.md](./docs/DESARROLLO.md)
+- **Guía de uso (contenido / admin):** [docs/GUIA-DE-USO.md](./docs/GUIA-DE-USO.md)
 
-## Variables de entorno
+## Repo y deploy
 
-Copiar `.env.example` a `.env` y completar valores.
+- **Repo canónico:** https://github.com/ecolink2024/Landing_ecolink1
+- **Producción:** https://landing-ecolink-gtr1.vercel.app
 
-## Base de datos
+Pushear cambios de producción solo a este repositorio (`main`).
 
-1. Crear DB en PlanetScale.
-2. Configurar `DATABASE_URL`.
-3. Ejecutar SQL de `prisma/migrations/20260222195000_init/migration.sql` en PlanetScale.
-4. Generar cliente Prisma:
-
-```bash
-npm run prisma:generate
-```
-
-## Desarrollo
+## Desarrollo rápido
 
 ```bash
 npm install
+cp .env.example .env.local   # completar variables (ver docs/DESARROLLO.md)
 npm run dev
 ```
 
-## Endpoints
+## Stack (resumen)
 
-- `GET /api/news?page=1&pageSize=5` público (solo publicadas).
-- `POST /api/news` admin.
-- `PUT /api/news/:id` admin.
-- `DELETE /api/news/:id` admin.
-- `POST /api/upload` admin (sube imagen a Cloudinary).
+Next.js 14 · Supabase (noticias + imágenes) · Auth admin por cookie JWT · Google Sheets (leads) · Vercel
