@@ -40,8 +40,55 @@ function createInitialForm(): FormState {
 const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
 const MAX_GALLERY_IMAGES = 6;
 
+type ApiErrorPayload = {
+  error?:
+    | string
+    | {
+        formErrors?: string[];
+        fieldErrors?: Record<string, string[] | undefined>;
+      };
+  message?: string;
+};
+
+function formatApiError(payload: unknown, fallback: string): string {
+  if (!payload || typeof payload !== 'object') return fallback;
+
+  const data = payload as ApiErrorPayload;
+
+  if (typeof data.message === 'string' && data.message.trim()) {
+    return data.message;
+  }
+
+  if (typeof data.error === 'string' && data.error.trim()) {
+    return data.error;
+  }
+
+  if (data.error && typeof data.error === 'object') {
+    const formError = data.error.formErrors?.find((msg) => typeof msg === 'string' && msg.trim());
+    if (formError) return formError;
+
+    const fieldMessages = Object.values(data.error.fieldErrors ?? {})
+      .flat()
+      .filter((msg): msg is string => typeof msg === 'string' && msg.trim().length > 0);
+
+    if (fieldMessages.length > 0) {
+      return fieldMessages.join(' ');
+    }
+  }
+
+  return fallback;
+}
+
+async function readJsonSafe(response: Response): Promise<unknown> {
+  try {
+    return await response.json();
+  } catch {
+    return null;
+  }
+}
+
 export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
-  const [items, setItems] = useState(initialNews);
+  const [items, setItems] = useState<News[]>(Array.isArray(initialNews) ? initialNews : []);
   const [form, setForm] = useState<FormState>(() => createInitialForm());
   const [editingId, setEditingId] = useState<string | number | null>(null);
   const [error, setError] = useState('');
@@ -52,9 +99,13 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
 
   async function refreshNews() {
     const response = await fetch('/api/news?page=1&pageSize=50&includeDrafts=1');
-    const data = await response.json();
-    const adminVisible = data.items as News[];
-    setItems(adminVisible);
+    const data = (await readJsonSafe(response)) as { items?: News[] } | null;
+
+    if (!response.ok || !data || !Array.isArray(data.items)) {
+      throw new Error('No se pudo actualizar el listado de noticias.');
+    }
+
+    setItems(data.items);
   }
 
   async function onUpload(file: File) {
@@ -91,11 +142,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
         const fallback = response.status === 413
           ? 'La imagen supera 4MB. Reducí el tamaño e intentá nuevamente.'
           : `No se pudo subir la imagen (HTTP ${response.status}).`;
-        const best =
-          data?.error ??
-          (rawText ? rawText.slice(0, 160) : null) ??
-          fallback;
-        setError(best);
+        setError(formatApiError(data, rawText ? rawText.slice(0, 160) : fallback));
         return;
       }
 
@@ -160,8 +207,7 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
           const fallback = response.status === 413
             ? 'Una imagen supera 4MB. Reducí el tamaño e intentá nuevamente.'
             : `No se pudo subir una imagen de galería (HTTP ${response.status}).`;
-          const best = data?.error ?? (rawText ? rawText.slice(0, 160) : null) ?? fallback;
-          throw new Error(best);
+          throw new Error(formatApiError(data, rawText ? rawText.slice(0, 160) : fallback));
         }
 
         if (!data?.secureUrl) {
@@ -187,6 +233,11 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
     event.preventDefault();
     setError('');
 
+    if (uploading) {
+      setError('Esperá a que termine de subir la imagen.');
+      return;
+    }
+
     if (!form.imageUrl) {
       setError('Subí una imagen antes de publicar.');
       return;
@@ -194,36 +245,41 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
 
     setLoading(true);
 
-    const endpoint = editingId ? `/api/news/${editingId}` : '/api/news';
-    const method = editingId ? 'PUT' : 'POST';
+    try {
+      const endpoint = editingId ? `/api/news/${editingId}` : '/api/news';
+      const method = editingId ? 'PUT' : 'POST';
 
-    const payload = {
-      title: form.title,
-      excerpt: form.excerpt,
-      content: form.content,
-      imageUrl: form.imageUrl,
-      galleryImages: form.galleryImages,
-      isPublished: form.isPublished,
-      publishedAt: form.publishedAt,
-    };
+      const payload = {
+        title: form.title.trim(),
+        excerpt: form.excerpt.trim(),
+        content: form.content.trim(),
+        imageUrl: form.imageUrl.trim(),
+        galleryImages: form.galleryImages,
+        isPublished: form.isPublished,
+        publishedAt: form.publishedAt,
+      };
 
-    const response = await fetch(endpoint, {
-      method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+      const response = await fetch(endpoint, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
 
-    setLoading(false);
+      const data = await readJsonSafe(response);
 
-    if (!response.ok) {
-      const data = await response.json();
-      setError(data.error?.formErrors?.[0] ?? data.error ?? 'No se pudo guardar la noticia.');
-      return;
+      if (!response.ok) {
+        setError(formatApiError(data, 'No se pudo guardar la noticia.'));
+        return;
+      }
+
+      setForm(createInitialForm());
+      setEditingId(null);
+      await refreshNews();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'No se pudo guardar la noticia.');
+    } finally {
+      setLoading(false);
     }
-
-    setForm(createInitialForm());
-    setEditingId(null);
-    await refreshNews();
   }
 
   function onEdit(item: News) {
@@ -244,13 +300,21 @@ export function AdminNewsManager({ initialNews }: { initialNews: News[] }) {
     const confirmed = window.confirm('¿Seguro que querés eliminar esta noticia?');
     if (!confirmed) return;
 
-    const response = await fetch(`/api/news/${id}`, { method: 'DELETE' });
-    if (!response.ok) {
-      setError('No se pudo eliminar la noticia.');
-      return;
-    }
+    setError('');
 
-    setItems((prev) => prev.filter((item) => item.id !== id));
+    try {
+      const response = await fetch(`/api/news/${id}`, { method: 'DELETE' });
+      const data = await readJsonSafe(response);
+
+      if (!response.ok) {
+        setError(formatApiError(data, 'No se pudo eliminar la noticia.'));
+        return;
+      }
+
+      setItems((prev) => prev.filter((item) => item.id !== id));
+    } catch {
+      setError('Error de red al eliminar la noticia.');
+    }
   }
 
   async function onLogout() {

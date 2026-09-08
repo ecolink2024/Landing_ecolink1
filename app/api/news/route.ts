@@ -49,7 +49,12 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const parsed = newsSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
+    const flattened = parsed.error.flatten();
+    const message =
+      flattened.formErrors[0] ??
+      Object.values(flattened.fieldErrors).flat().find(Boolean) ??
+      'Datos inválidos.';
+    return NextResponse.json({ error: flattened, message }, { status: 400 });
   }
 
   const { title, excerpt, content, imageUrl, galleryImages, isPublished, publishedAt } = parsed.data;
