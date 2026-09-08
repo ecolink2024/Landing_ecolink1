@@ -5,8 +5,7 @@ export const newsSchema = z.object({
   excerpt: z
     .string()
     .trim()
-    .min(3, 'La bajada debe tener al menos 3 caracteres.')
-    .max(220, 'La bajada no puede superar 220 caracteres.'),
+    .min(3, 'La bajada debe tener al menos 3 caracteres.'),
   content: z.string().trim().min(10, 'El contenido debe tener al menos 10 caracteres.'),
   imageUrl: z.string().url('La imagen debe ser una URL válida.'),
   galleryImages: z.array(z.string().url('Las imágenes de galería deben ser URLs válidas.')).max(6).optional().default([]),
