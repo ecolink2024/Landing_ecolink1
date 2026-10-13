@@ -1,5 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@/app/components/GoogleAnalytics";
+import { GoogleAnalyticsPageViews } from "@/app/components/GoogleAnalyticsPageViews";
 import { WhatsAppWidget } from "@/app/components/WhatsAppWidget";
 
 export const metadata: Metadata = {
@@ -26,6 +28,8 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <GoogleAnalytics />
+        <GoogleAnalyticsPageViews />
         {children}
         <WhatsAppWidget />
       </body>
