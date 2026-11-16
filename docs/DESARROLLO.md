@@ -119,6 +119,31 @@ Sources de leads: `home` | `empresas` | `casas` (`POST /api/leads?source=...`).
 
 ## Datos: noticias (Supabase)
 
+Un solo proyecto, y tiene que quedarse en una **organización del plan Free**.
+
+| Qué | Valor |
+| --- | --- |
+| **Project ref** | `tliqjcwzwesggkjwfsvk` |
+| **URL** | `https://tliqjcwzwesggkjwfsvk.supabase.co` |
+| **Dashboard** | https://supabase.com/dashboard/project/tliqjcwzwesggkjwfsvk |
+| **Tabla** | `public.news` |
+| **Bucket** | `news-images` (público) |
+| **Plan** | Free, en una organización distinta de la organización Pro del equipo |
+
+`SUPABASE_URL` en Vercel (y en `.env.local`) tiene que ser exactamente esa URL. Las claves no cambian si el proyecto se mueve de organización: no hace falta rotar `SUPABASE_SERVICE_ROLE_KEY` ni redeployar por el traslado.
+
+### Por qué no va en la organización paga
+
+El plan se cobra por organización, no por proyecto. En una organización Pro, Supabase incluye crédito de cómputo para un solo proyecto. Cada proyecto extra en el tamaño Micro suma unos **10 USD/mes**. Este proyecto es solo noticias e imágenes y no necesita Pro.
+
+No mover `tliqjcwzwesggkjwfsvk` de vuelta a la organización Pro, ni crear un proyecto nuevo de EcoLink ahí. Si hiciera falta trasladarlo, el destino es una organización Free de la misma cuenta (límite de Supabase: 2 proyectos gratis activos por cuenta). El traslado está en **Project Settings → General → Transfer project**. Puede haber 1–2 minutos sin noticias; la URL sigue igual.
+
+Límites del plan Free que aplican acá: base hasta **500 MB** y Storage hasta **1 GB**. El tamaño de las tablas se ve en **Observability → Database**, gráfico **Database size** (el gráfico de Memory es la RAM del servidor, no el tamaño de los datos). Las fotos se ven en **Storage**, arriba del bucket `news-images`.
+
+En Free, Supabase pausa el proyecto tras **7 días sin uso**. Los datos no se borran; hay que reactivarlo desde el dashboard. El cron de Vercel (`vercel.json`, `GET /api/health/supabase` cada 2 días a las 09:00 UTC) hace un `select` mínimo a `news` para que no se pause. No sacar ese cron.
+
+Los formularios de contacto no están en Supabase: van a Google Sheets.
+
 Tabla `public.news` (campos usados por la app):
 
 - `id`, `title`, `excerpt`, `content`
@@ -176,7 +201,7 @@ Presentaciones: editar URLs en `lib/embedded-slides.ts` (Publish to web → `pub
 ## Deploy
 
 - Host: **Vercel**, proyecto ligado a `ecolink2024/Landing_ecolink1` (`main`)
-- Cron (`vercel.json`): `GET /api/health/supabase` cada 2 días a las 09:00 UTC aprox.
+- Cron (`vercel.json`): `GET /api/health/supabase` cada 2 días a las 09:00 UTC. Existe para que el proyecto Free no se pause por inactividad. No eliminarlo.
 
 Tras push a `main`, Vercel redeploya solo. Verificar variables en el dashboard de Vercel.
 
